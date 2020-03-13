@@ -16,9 +16,6 @@
     "mac": {
       "category": "public.app-category.utilities"
     },
-    "win": {
-      "target": "portable"
-    },
     "files": [
       "build/**/*",
       "node_modules/**/*"
@@ -45,7 +42,8 @@
     "dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
     "preelectron-pack": "yarn build",
-    "electron-pack": "electron-builder build -w"
+    "dist": "electron-builder build",
+    "dist portable": "electron-builder build -w portable"
   },
   "eslintConfig": {
     "extends": "react-app"
