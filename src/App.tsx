@@ -1,28 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Test from './components/Test'
+import React, { useContext } from 'react'
+import './App.css'
+import Midi from './components/Midi'
+import Inputs from './components/Inputs'
+import StoreContext, { Store } from './store'
+import Panel from './components/Panel'
+import fs from 'fs'
+import { join } from 'path'
+import { remote } from 'electron'
 
 function App() {
+  console.log(remote.app.getAppPath())
+  const configPath = 
+    remote.app.isPackaged ? 
+      join(process.resourcesPath, './assets/loupedeck.json')
+      : 
+      './assets/loupedeck.json' 
+  
+  const initial = {
+    config: JSON.parse(fs.readFileSync(configPath, 'utf-8'))
+  }
+  console.log(initial)
+  const store = Store({...useContext(StoreContext), ...initial})
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <Test />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <StoreContext.Provider value={store}>
+        <Midi />
+        <Inputs />
+        <Panel />
+      </StoreContext.Provider>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

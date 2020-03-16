@@ -22,17 +22,25 @@
     ],
     "directories": {
       "buildResources": "assets"
-    }
+    },
+    "extraResources": [
+      {
+        "from": "./assets",
+        "to": "assets"
+      }
+    ]
   },
   "dependencies": {
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "electron-is-dev": "^1.1.0",
+    "python-shell": "^1.0.8",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "webmidi": "^2.5.1"
   },
   "scripts": {
     "start": "rescripts start",
@@ -41,9 +49,8 @@
     "eject": "react-scripts eject",
     "dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
-    "preelectron-pack": "yarn build",
-    "dist": "electron-builder build",
-    "dist portable": "electron-builder build -w portable"
+    "dist": "yarn build && electron-builder build",
+    "dist portable": "yarn build && electron-builder build -w portable"
   },
   "eslintConfig": {
     "extends": "react-app"

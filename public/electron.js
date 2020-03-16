@@ -1,6 +1,5 @@
 const { app, BrowserWindow } = require('electron')
-// const app = electron.app
-// const BrowserWindow = electron.BrowserWindow
+
 
 const path = require('path')
 const isDev = require('electron-is-dev')
@@ -29,10 +28,9 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
-});
-
+})
 app.on('activate', () => {
   if (mainWindow === null) {
     createWindow()
   }
-});
+})
