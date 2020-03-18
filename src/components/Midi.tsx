@@ -1,27 +1,38 @@
 import React, { useContext } from 'react'
 import webmidi, { WebMidi } from 'webmidi'
 import StoreContext, { Store } from '../store'
+import Device from './Device'
+import Panel from './Panel'
 
 const Midi = () => {
   const store = useContext(StoreContext) as Store
   
-  const enableMidi:Promise<WebMidi> = new Promise ((resolve, reject) => {
-    webmidi.enable(err => {
-      if (err) reject(err)
-      else resolve(webmidi)
-    }, true)
-  })
   
   React.useEffect(() => {
+    const enableMidi:Promise<WebMidi> = new Promise ((resolve, reject) => {
+      webmidi.enable(err => {
+        if (err) reject(err)
+        else resolve(webmidi)
+      }, true)
+    })
     async function StartMidi() { 
       store.setters.setWebMidi(await enableMidi)
     }
-    StartMidi()
-  }, [enableMidi, store])
+    if (!store.webMidi.enabled) {
+      StartMidi()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [store.webMidi])
   return (
-    <div>
-      {JSON.stringify(store.state.WebMidi ? store.state.WebMidi.enabled : 'Midi is Loading...')}
-    </div>
+      store.webMidi ?
+      <div>
+        <Device />
+        <Panel />
+      </div> 
+      : 
+      <div>
+        'Midi is Loading...'
+      </div>
   )
 }
 

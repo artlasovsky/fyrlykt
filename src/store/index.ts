@@ -1,31 +1,60 @@
 import { createContext, useState } from 'react'
 import { WebMidi, Input } from 'webmidi'
+import fs from 'fs'
+import { remote } from 'electron'
+import { join } from 'path'
 
-const StoreContext = createContext({})
+const StoreContext = createContext({} as ReturnType<typeof Store>)
 
 export default StoreContext
 
-export const Store = (initialState:any) => {
-  const [state, setState] = useState({...initialState})
+export const Store = () => {
+  const [webMidi, _setWebMidi]:[WebMidi, Function] = useState({} as WebMidi)
+  const [device, _setDevice]:[Input, Function] = useState({} as Input)
+  const [config, _setConfig]:[AppConfig, Function] = useState({} as AppConfig)
+  const [FN, _setFN]:[boolean, Function] = useState(false)
 
   const setters = {
-    setWebMidi(WebMidi: WebMidi) {
-      setState({...state, ...{ WebMidi }})
+    loadConfig() {
+      const configPath = remote.app.isPackaged ? 
+        join(process.resourcesPath, './assets/loupedeck.json')
+        : 
+        './assets/loupedeck.json' 
+      const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
+      console.log('load config')
+      _setConfig(config)
     },
-    setInput(MidiInput: Input | string) {
-      setState({...state, ...{ MidiInput }})
+    setConfig(config:AppConfig) {
+      _setConfig(config)
+    },
+    setFN(fn:boolean) {
+      _setFN(fn)
+    },
+    setWebMidi(WebMidi: WebMidi) {
+      console.log('midi')
+      _setWebMidi(WebMidi)
+    },
+    setDevice(name:string) {
+      if (webMidi.inputs) {
+        const input = webMidi.inputs.find(input => input.name === name)
+        let device
+        if (input) device = webMidi.getInputById(input.id)
+        console.log('set device')
+        _setDevice(device)
+      }
     }
   }
   const getters = {
-    getInput() {
-      return state.MidiInput
-    }
+
   }
   return { 
-    state, setters, getters, setState 
+    webMidi, device, 
+    config, FN,
+    setters, getters
   } as { 
-    state: State, setters: typeof setters,
-    getters: typeof getters, setState: typeof setState
+    webMidi: typeof webMidi, device: typeof device,
+    config: typeof config, FN: typeof FN, 
+    setters: typeof setters, getters: typeof getters
   }
 }
 
@@ -51,7 +80,7 @@ export interface AppConfig {
 
 export interface State {
   WebMidi: WebMidi,
-  MidiInput: Input | string,
+  device: Input,
   Screen: string,
   config: AppConfig
 }

@@ -6,6 +6,9 @@ const isDev = require('electron-is-dev')
 
 let mainWindow
 
+delete process.env.ELECTRON_ENABLE_SECURITY_WARNINGS;
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
+
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 900, height: 680, 
