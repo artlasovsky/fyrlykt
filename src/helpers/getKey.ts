@@ -1,4 +1,4 @@
-import { AppConfig, Key } from "../store"
+import { AppConfig, Key, Shortcut } from "../store"
 import { InputEventNoteon, InputEventNoteoff, InputEventControlchange } from "webmidi"
 
 type InputEvent = InputEventNoteon | InputEventNoteoff | InputEventControlchange 
@@ -12,21 +12,26 @@ const getKey = (config: AppConfig, inputEvent:InputEvent, FN: boolean) => {
   // let name:string = ''
   let formatted = {} as Key
   if (instance) {
-    if (instance.name === 'FN') return instance
+    if (instance.name === 'FN') return { instance }
     // return instance
     // formatted = JSON.parse(JSON.stringify(instance))
     // name = instance.name
+    // console.log(FN)
     if (direction === 64) {
       formatted.name = instance.name
-      formatted.value = instance.value
+      formatted.value = FN ? instance.fn : instance.value
     } else {
       formatted.name = `${instance.name} ${direction === 1 ? '+' : '-'}`
       formatted.value = instance.value[direction === 1 ? 1 : 0]
-      console.log(instance.value)
+      // console.log(instance.value)
     }
-    return formatted
+    const [ category, title ] = formatted.value.slice(2, -2).split(' > ')
+    const shortcuts: Array<Shortcut> = config.shortcuts
+    const shortcut: string | undefined = shortcuts.find(shortcut => shortcut.category === category && shortcut.title === title)?.value
+    // Continue to Decote to get it as [params] 
+    return { instance: formatted as Key, shortcut }
   }
-  return {} as Key
+  return { instance: {}, shortcut: '' } as { instance: Key, shortcut: string | undefined }
 
 }
 

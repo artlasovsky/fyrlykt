@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import StoreContext from '../store'
 // import { Input } from 'webmidi'
 // import { PythonShell } from 'python-shell'
@@ -13,14 +13,19 @@ const Panel = () => {
   // SET INPUT
   useEffect(() => {
     if (store.device.name) {
+      let fn = false
       console.log('panel loaded')
+      // setFN(false)
       store.device.addListener('noteon', 'all', e => {
         // const keyID = e.data[1]
-        const key = getKey(store.config, e, store.FN)
-        if (key.name === 'FN') store.setters.setFN(true)
-        else {
-          console.log(key)  
+        const key = getKey(store.config, e, fn)
+        if (key.instance.name === 'FN') {
+          // console.log(FN)
+          // setFN(true)
+          fn = true
         }
+        
+        console.log(key)
         // const key = getKey
         // py.send({
           //   command: 'hotkey',
@@ -28,13 +33,17 @@ const Panel = () => {
           // })
         })
       store.device.addListener('controlchange', 'all', e => {
-        const key = getKey(store.config, e, store.FN)
+        const key = getKey(store.config, e, fn)
         console.log(key)
         // console.log(e.data[1])
         // console.log(e.data[2])
       })
       store.device.addListener('noteoff', 'all', e => {
-        if (getKey(store.config, e, store.FN).name === 'FN') store.setters.setFN(false)
+        const key = getKey(store.config, e, fn)
+        if (key.instance.name === 'FN') {
+          // setFN(false)
+          fn = false
+        }
       // console.log(e)
       })
     }
@@ -44,7 +53,7 @@ const Panel = () => {
   return (
     <div>
       <p>Config App: {JSON.stringify(store.config.app)}</p>
-      <p>FN: {JSON.stringify(store.FN)}</p>
+      {/* <p>FN: {JSON.stringify(FN)}</p> */}
     </div>
   )
 }

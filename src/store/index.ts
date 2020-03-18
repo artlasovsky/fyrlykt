@@ -12,7 +12,6 @@ export const Store = () => {
   const [webMidi, _setWebMidi]:[WebMidi, Function] = useState({} as WebMidi)
   const [device, _setDevice]:[Input, Function] = useState({} as Input)
   const [config, _setConfig]:[AppConfig, Function] = useState({} as AppConfig)
-  const [FN, _setFN]:[boolean, Function] = useState(false)
 
   const setters = {
     loadConfig() {
@@ -26,9 +25,6 @@ export const Store = () => {
     },
     setConfig(config:AppConfig) {
       _setConfig(config)
-    },
-    setFN(fn:boolean) {
-      _setFN(fn)
     },
     setWebMidi(WebMidi: WebMidi) {
       console.log('midi')
@@ -49,11 +45,11 @@ export const Store = () => {
   }
   return { 
     webMidi, device, 
-    config, FN,
+    config, 
     setters, getters
   } as { 
     webMidi: typeof webMidi, device: typeof device,
-    config: typeof config, FN: typeof FN, 
+    config: typeof config, 
     setters: typeof setters, getters: typeof getters
   }
 }
