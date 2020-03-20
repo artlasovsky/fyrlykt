@@ -1,60 +1,49 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import StoreContext from '../store'
-// import { Input } from 'webmidi'
-// import { PythonShell } from 'python-shell'
-// import { join } from 'path'
-// import { remote } from 'electron'
-import py from '../helpers/py'
-import getKey from '../helpers/getKey'
+import { getKey, runCommand } from '../helpers/key'
+import Editor from './Editor'
 
 const Panel = () => {
-  const store = useContext(StoreContext)
-  
+  const { device, config, editMode, setters } = useContext(StoreContext)
   // SET INPUT
   useEffect(() => {
-    if (store.device.name) {
+    if (device.name) {
       let fn = false
       console.log('panel loaded')
-      // setFN(false)
-      store.device.addListener('noteon', 'all', e => {
-        // const keyID = e.data[1]
-        const key = getKey(store.config, e, fn)
-        if (key.instance.name === 'FN') {
-          // console.log(FN)
-          // setFN(true)
-          fn = true
+      device.addListener('noteon', 'all', e => {
+        const key = getKey(config, e, fn)
+        if (key.instance?.name === 'FN') fn = true
+        if (key.instance) {
+          editMode ? setters.setActiveKey(key.instance) : runCommand(key)
         }
-        
-        console.log(key)
-        // const key = getKey
-        // py.send({
-          //   command: 'hotkey',
-          //   params: ['alt', 'tab']
-          // })
-        })
-      store.device.addListener('controlchange', 'all', e => {
-        const key = getKey(store.config, e, fn)
-        console.log(key)
-        // console.log(e.data[1])
-        // console.log(e.data[2])
       })
-      store.device.addListener('noteoff', 'all', e => {
-        const key = getKey(store.config, e, fn)
-        if (key.instance.name === 'FN') {
-          // setFN(false)
-          fn = false
+      device.addListener('controlchange', 'all', e => {
+        const key = getKey(config, e, fn)
+        // runCommand(key)
+        if (key.instance) {
+          editMode ? setters.setActiveKey(key.instance) : runCommand(key)
         }
-      // console.log(e)
+      })
+      device.addListener('noteoff', 'all', e => {
+        const key = getKey(config, e, fn)
+        if (key.instance?.name === 'FN') fn = false
       })
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [store.device])
-  
+    return () => {
+      if (device.hasListener) device.removeListener()
+    }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [device, editMode])
+
   return (
-    <div>
-      <p>Config App: {JSON.stringify(store.config.app)}</p>
-      {/* <p>FN: {JSON.stringify(FN)}</p> */}
-    </div>
+    <section className="panel">
+      <button onClick={setters.toggleEditMode}>Config</button>
+      {editMode ? 
+        <Editor />
+        :
+        <div>activated</div>
+      }
+    </section>
   )
 }
 

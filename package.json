@@ -9,6 +9,7 @@
     "email": "artlasovsky@gmail.com",
     "url": "https://artlasovsky.com"
   },
+  "description": "Application for Loupedeck+ & DaVinci Resolve communication",
   "build": {
     "appId": "com.artlasovsky.fyrlykt",
     "productName": "Fyrlykt",
@@ -35,6 +36,7 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "electron-is-dev": "^1.1.0",
+    "node-sass": "^4.13.1",
     "python-shell": "^1.0.8",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",

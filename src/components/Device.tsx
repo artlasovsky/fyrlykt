@@ -2,19 +2,22 @@ import React, { useContext, useEffect } from 'react'
 import StoreContext, { Store } from '../store'
 
 const Device = () => {
-  const store = useContext(StoreContext) as Store
+  const { device, config, webMidi, setters: { loadConfig, setDevice } } = useContext(StoreContext) as Store
   
   useEffect(() => {
-    if (!store.config.app) {
-      store.setters.loadConfig()
+    if (!config.app) {
+      loadConfig()
     }
-    store.setters.setDevice('Loupedeck+')
+    setDevice('Loupedeck+')
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[store.webMidi])
+  },[webMidi])
   
-  if (store.webMidi) {
+  if (webMidi) {
     return (
-      <div>Connected: {JSON.stringify(store.device.name)}</div>
+      <div className="device">
+        <p>Connected: {JSON.stringify(device.name)}</p>
+        <p>Config App: {JSON.stringify(config.app)}</p>
+      </div>
     )
   } else {
     return <div>loading...</div>
