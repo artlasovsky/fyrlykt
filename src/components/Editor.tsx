@@ -1,36 +1,34 @@
 import React, { useContext, useState, useEffect } from 'react'
 import StoreContext from '../store'
+import Key from './Editor/Key'
 
 const Editor = () => {
-  const { activeKey, config: { shortcuts }, userConfigPath, setters: { saveActiveKey } } = useContext(StoreContext)
+  const { activeKey, config: { shortcuts }, setters: { saveActiveKey } } = useContext(StoreContext)
   const [categories, setCategories]:[string[], Function] = useState([])
   const [titles, setTitles]:[string[], Function] = useState([])
   const [category, setCategory] = useState('')
   const [title, setTitle] = useState('')
 
-  // const saveShortcut = () => {
-  //   // const userConfig = isDev ? './user' : remote.app.getAppPath().replace('app.asar', '')
-  //   // console.log(fs.readdirSync(appPath))
-  //   // fs.writeFileSync()
-  //   console.log('save')
-  // }
-  // on load
   useEffect(() => {
     if (shortcuts) {
       const _categories = shortcuts
         .map(shortcut => shortcut.category)
         .filter((x, i, a) => a.indexOf(x) === i)
+      _categories.unshift('—')
       setCategories(_categories)
     }
   }, [shortcuts])
   useEffect(() => {
     if (shortcuts) {
-      setTitles(shortcuts
+      const _titles = shortcuts
         .filter(shortcut => shortcut.category === category)
         .map(shortcut => shortcut.title)
-        .filter((x, i, a) => a.indexOf(x) === i))
+        .filter((x, i, a) => a.indexOf(x) === i)
+      _titles.unshift('—')
+      setTitles(_titles)
     }
     if (!category) setTitle('')
+    // else if (!activeKey.category) setTitle(titles[0])
     // eslint-disable-next-line
   }, [category])
   
@@ -51,34 +49,68 @@ const Editor = () => {
       setTitle('')
     }
   }, [activeKey])
+  
+  const sameShortcut = () => {
+    // if (activeKey.category !== '' && activeKey.title !== '') {
+      return activeKey.category === category && activeKey.title === title
+    // } else {
+    //   return false
+    // }
+  }
+  const revertSelection = () => {
+    if (activeKey.title && activeKey.category) {
+      setTitle(activeKey.title)
+      setCategory(activeKey.category)
+    }
+  }
 
   return (
     <div id="editor">
-      <p>Editor</p>
-      {activeKey.name ? 
-        <div>
-          <p>{userConfigPath}</p>
-          <p>{JSON.stringify(activeKey.name)}</p>
-          {/* <p>{JSON.stringify(activeKey.id)}</p>
-          <p>{JSON.stringify(
-            config[activeKey.direction === 64 ? 'keys' : 'knobs']
-            .filter(key => key.id === activeKey.id)
-          )}</p> */}
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
-            <option value="">—</option>
-            {categories?.map(category => <option value={category} key={category}>{category}</option>)}
-          </select>
-          <select value={title} onChange={(e) => setTitle(e.target.value)}>
-            <option value="">—</option>
-            {titles?.map(title => <option value={title} key={title}>{title}</option>)}
-          </select>
-          <p>Current: {activeKey.category} - {activeKey.title}</p>
-          <p>New: {category} - {title}</p>
-          <button onClick={() => saveActiveKey(activeKey, category, title)}>Save</button>
+      <div className="select">
+        <Key activeKey={activeKey}/>
+        <div className="shortcut">
+          {
+            activeKey.name ?
+            <div className="info">
+              {
+                sameShortcut() ?
+                <p>
+                  { 
+                    activeKey.title && activeKey.category ? 
+                      `${category} - ${title}`
+                      :
+                      'empty'
+                  }
+                </p>
+                :
+                <div>
+                  <p className="new">
+                  { 
+                    activeKey.title && activeKey.category ? 
+                      `${category} - ${title}`
+                      :
+                      'not setted'
+                  }
+                  </p>
+                  <p className="current">Current shortcut:{activeKey.category} - {activeKey.title}</p>
+                  <button onClick={() => saveActiveKey(activeKey, category, title)}>Save</button>
+                  <button onClick={revertSelection}>Cancel</button>
+                </div>
+              }
+            </div>
+            : 
+            <div className="info">shortcut info</div>
+          }
         </div>
-        :
-        <p>Press key or knob on your Loupedeck or select from list</p>
-      }
+      </div>
+      <div className="config">
+        <select className="category" value={category} size={15} onChange={(e) => setCategory(e.target.value)}>
+          {categories?.map(category => <option value={category} key={category}>{category}</option>)}
+        </select>
+        <select className="shortcut" value={title} size={15} onChange={(e) => setTitle(e.target.value)}>
+          {titles?.map(title => <option value={title} key={title}>{title}</option>)}
+        </select>
+      </div>
     </div>
   )
 }

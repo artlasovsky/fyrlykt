@@ -19,15 +19,18 @@
     },
     "files": [
       "build/**/*",
-      "node_modules/**/*"
+      "node_modules/**/*",
+      "assets/icon.ico",
+      "assets/icon.png",
+      "assets/loupedeck.json"
     ],
     "directories": {
       "buildResources": "assets"
     },
     "extraResources": [
       {
-        "from": "./assets",
-        "to": "assets"
+        "from": "./assets/python",
+        "to": "assets/python"
       }
     ]
   },

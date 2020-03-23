@@ -4,6 +4,7 @@ import fs from 'fs'
 import { remote } from 'electron'
 import { join } from 'path'
 import isDev from 'electron-is-dev'
+import { getKey } from '../helpers/key'
 
 const StoreContext = createContext({} as ReturnType<typeof Store>)
 
@@ -19,13 +20,20 @@ export const Store = () => {
 
   const setters = {
     loadConfig() {
-      const configPath = remote.app.isPackaged ? 
-        join(process.resourcesPath, './assets/loupedeck.json')
+      const userConfig = join(userConfigPath, `loupedeck.json`)
+      let configPath = remote.app.isPackaged ? 
+        join(remote.app.getAppPath(), './assets/loupedeck.json')
         : 
-        './assets/loupedeck.json' 
+        './assets/loupedeck.json'
+      if (fs.existsSync(userConfig)) configPath = userConfig
       const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
-      console.log('load config')
+      console.log(fs.existsSync(userConfig) ? 'user config loaded' : 'default config loaded')
       _setConfig(config)
+    },
+    resetConfig() {
+      const userConfig = join(userConfigPath, 'loupedeck.json')
+      fs.unlinkSync(userConfig)
+      setters.loadConfig()
     },
     setConfig(config:AppConfig) {
       _setConfig(config)
@@ -43,11 +51,15 @@ export const Store = () => {
         _setDevice(device)
       }
     },
-    toggleEditMode() {
-      _setEditMode(!editMode)
-    },
     setActiveKey(key:Key) {
       if (key.name !== 'FN') _setActiveKey(key)
+    },
+    resetActiveKey() {
+      _setActiveKey({})
+    },
+    toggleEditMode() {
+      _setEditMode(!editMode)
+      setters.resetActiveKey()
     },
     saveActiveKey(activeKey:Key, category: string, title: string) {
       const keyType = activeKey.direction === 64 ? 'keys' : 'knobs'
@@ -75,13 +87,20 @@ export const Store = () => {
           [fn ? 'fn' : 'value']: value
         }
       }
-      console.log(newKey)
-      // attach newKey to newConfig and save it
-      // update config state
+      const newConfig:AppConfig = JSON.parse(JSON.stringify(config))
+      newConfig[keyType][keyId] = newKey
+      _setConfig(newConfig)
+      _setActiveKey(getKey(newConfig, [ activeKey.id, activeKey.direction ] as [number, number], fn).instance)
+      if (!fs.existsSync(userConfigPath)) fs.mkdirSync(userConfigPath)
+      const configFileName = `${newConfig.panel.toLowerCase()}`
+      // const configFileName = `${newConfig.panel.toLowerCase()}_${newConfig.panel.toLowerCase().replace(' ', '-')}`
+      fs.writeFileSync(join(userConfigPath, `${configFileName}.json`), JSON.stringify(newConfig))
     }
   }
   const getters = {
-
+    get userConfig() {
+      return fs.existsSync(join(userConfigPath, 'loupedeck.json'))
+    }
   }
   return { 
     webMidi, device, 
@@ -114,10 +133,12 @@ export interface Shortcut {
 }
 
 export interface AppConfig {
+  app: string,
+  panel: string,
   keys: Array<Key>, 
   knobs: Array<Key>, 
-  shortcuts: Array<Shortcut>,
-  [key: string]: Array<Key | Shortcut> 
+  shortcuts: Array<Shortcut>
+  // [key: string]: Array<Key | Shortcut> | string 
 }
 
 export interface State {

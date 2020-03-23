@@ -1,5 +1,6 @@
 {
-  "app": "Loupedeck",
+  "app": "DaVinci Resolve",
+  "panel": "Loupedeck",
   "keys": [
     { "id":95, "name":"Undo", "value": "${Application > Undo}$", "fn": "" },
     { "id":96, "name":"Redo", "value": "${Application > Redo}$", "fn": "" },

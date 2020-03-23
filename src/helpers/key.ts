@@ -1,11 +1,9 @@
 import { AppConfig, Key, Shortcut } from "../store"
-import { InputEventNoteon, InputEventNoteoff, InputEventControlchange } from "webmidi"
+// import { InputEventNoteon, InputEventNoteoff, InputEventControlchange } from "webmidi"
 import py from './py'
 
-type InputEvent = InputEventNoteon | InputEventNoteoff | InputEventControlchange 
-export const getKey = (config: AppConfig, inputEvent:InputEvent, FN: boolean):{ instance: Key | null, shortcut: Array<PySend> | null }  => {
-  const keyID = inputEvent.data[1]
-  const direction: number = inputEvent.data[2]
+// type InputEvent = InputEventNoteon | InputEventNoteoff | InputEventControlchange 
+export const getKey = (config: AppConfig, [ keyID, direction ]: Array<number>, FN: boolean):{ instance: Key | null, shortcut: Array<PySend> | null }  => {
   const list: Array<Key> = direction === 64 ? config.keys : config.knobs
   const instance: Key | undefined = list.find(key => key.id === keyID)
   let formatted = {} as Key
