@@ -1,14 +1,28 @@
+$font-family: 'Jost*';
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  user-select: none;
+}
+button {
+  font-family: $font-family;
 }
 
 body {
   margin: 0;
-  font-family: 'Jost*';
-  margin: 10px;
+  font-family: $font-family;
+  padding: 10px;
   background-color: white;
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
+  .App {
+    height: 100%;
+  }
 }
 
 @import './device.scss';

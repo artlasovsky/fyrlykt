@@ -22,7 +22,8 @@
       "node_modules/**/*",
       "assets/icon.ico",
       "assets/icon.png",
-      "assets/loupedeck.json"
+      "assets/loupedeck.json",
+      "assets/python/fyrlykt.exe"
     ],
     "directories": {
       "buildResources": "assets"
@@ -40,7 +41,6 @@
     "@types/react-dom": "^16.9.0",
     "electron-is-dev": "^1.1.0",
     "node-sass": "^4.13.1",
-    "python-shell": "^1.0.8",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0",
@@ -55,7 +55,8 @@
     "dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
     "dist": "yarn build && electron-builder build",
-    "dist portable": "yarn build && electron-builder build -w portable"
+    "dist portable": "yarn build && electron-builder build -w portable",
+    "pydist": "pyinstaller ./assets/python/fyrlykt.py -F -p ./assets/python/env/lib/site-packages --distpath ./assets/python"
   },
   "eslintConfig": {
     "extends": "react-app"

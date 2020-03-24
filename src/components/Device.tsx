@@ -11,7 +11,7 @@ const Device = () => {
     setDevice('Loupedeck+')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[webMidi])
-  
+
   if (webMidi) {
     return (
       <div className="device">

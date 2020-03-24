@@ -5,13 +5,18 @@
 /.pnp
 .pnp.js
 
-# testing
-/coverage
 
 # production
 /build
 /dist
 
+# python
+/assets/python/env
+/assets/python/dist
+/assets/python/build
+/assets/python/__pycache__
+/assets/python/.vscode
+fyrlykt.spec
 # misc
 .DS_Store
 .env.local

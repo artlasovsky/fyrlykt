@@ -25,18 +25,23 @@ function createWindow() {
   }
 
   tray = new Tray(isDev ? path.join(__dirname, '../assets/icon.ico') : path.join(app.getAppPath(), './assets/icon.ico'))
-  // const contextMenu = Menu.buildFromTemplate([
-  //   {
-  //     label: 'Quit', click: () => {
-  //       app.quit()
-  //     }
-  //   }
-  // ])
-  // tray.on('click', () => {
-  //   mainWindow.show()
-  // })
-  // tray.setToolTip('Fyrlykt - Loupedeck with Resolve')
-  // tray.setContextMenu(contextMenu)
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'Quit', click: () => {
+        app.quit()
+      }
+    }
+  ])
+  tray.on('click', () => {
+    mainWindow.show()
+  })
+  tray.setToolTip('Fyrlykt - Loupedeck with Resolve')
+  tray.setContextMenu(contextMenu)
+  mainWindow.hide()
+  mainWindow.on('close', e => {
+    e.preventDefault()
+    mainWindow.hide()
+  })
   mainWindow.removeMenu()
   mainWindow.on('closed', () => mainWindow = null)
 }

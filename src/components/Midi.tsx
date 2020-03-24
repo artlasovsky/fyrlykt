@@ -7,7 +7,6 @@ import Panel from './Panel'
 const Midi = () => {
   const store = useContext(StoreContext) as Store
   
-  
   React.useEffect(() => {
     const enableMidi:Promise<WebMidi> = new Promise ((resolve, reject) => {
       webmidi.enable(err => {
@@ -24,7 +23,7 @@ const Midi = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store.webMidi])
   return (
-      store.webMidi ?
+      store.webMidi && store.device ?
       // <div className="midi">
       //   <Device />
       //   <Panel />
@@ -34,8 +33,9 @@ const Midi = () => {
         <Panel />
       </div> 
       : 
-      <div>
-        'Midi is Loading...'
+      <div className="not-connected">
+        <p>'Loupedeck is not connected'</p>
+        <button onClick={() => window.location.reload()}>Reload</button>
       </div>
   )
 }
