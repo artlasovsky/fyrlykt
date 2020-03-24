@@ -1,9 +1,6 @@
 import { AppConfig, Key, Shortcut } from "../store"
-// import { InputEventNoteon, InputEventNoteoff, InputEventControlchange } from "webmidi"
-// import py from './py'
 import { send } from './py'
 
-// type InputEvent = InputEventNoteon | InputEventNoteoff | InputEventControlchange 
 export const getKey = (config: AppConfig, [ keyID, direction ]: Array<number>, FN: boolean):{ instance: Key | null, shortcut: Array<PySend> | null }  => {
   const list: Array<Key> = direction === 64 ? config.keys : config.knobs
   const instance: Key | undefined = list.find(key => key.id === keyID)
@@ -54,7 +51,6 @@ export const getKey = (config: AppConfig, [ keyID, direction ]: Array<number>, F
 export const runCommand = (key: { instance: Key | null, shortcut: PySend[] | null}) => {
   if (key.shortcut) {
     for(let command of key.shortcut) {
-      // py.send(command)
       send(JSON.stringify(command))
       console.log(command)
     }
@@ -63,8 +59,6 @@ export const runCommand = (key: { instance: Key | null, shortcut: PySend[] | nul
 export const pyStart = () => {
   send('start')
 }
-
-// export default getKey
 
 interface PySend {
   command: string,
