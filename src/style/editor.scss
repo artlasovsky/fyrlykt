@@ -27,14 +27,13 @@
       align-items: center;
       
       .activeKey {
-        // &.current
         font-size: 20px;
       }
-      .setter {
-        // user-select: none;
+      .setter, .buttons {
         opacity: 0;
         margin-bottom: -20px;
-        transition: opacity,margin-bottom .3s ease-in-out;
+        transition: all .3s ease-in-out;
+        transition-property: opacity, margin-bottom;
         &.show {
           margin-bottom: 0px;
           opacity: 1;

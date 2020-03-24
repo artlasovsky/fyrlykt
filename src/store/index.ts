@@ -16,6 +16,7 @@ export const Store = () => {
   const [config, _setConfig]:[AppConfig, Function] = useState({} as AppConfig)
   const [editMode, _setEditMode]:[boolean, Function] = useState(true)
   const [activeKey, _setActiveKey]:[Key, Function] = useState({} as Key)
+  // const [currentKey, _setCurrentKey]:[CurrentKey, Function] = useState({} as CurrentKey)
   const userConfigPath = isDev ? './user' : remote.app.getAppPath().replace('app.asar', '')
 
   const setters = {
@@ -34,6 +35,7 @@ export const Store = () => {
       const userConfig = join(userConfigPath, 'loupedeck.json')
       fs.unlinkSync(userConfig)
       setters.loadConfig()
+      setters.setActiveKey({} as Key)
     },
     setConfig(config:AppConfig) {
       _setConfig(config)
@@ -122,8 +124,12 @@ export interface Key {
   fn: string | string[],
   title?: string,
   category?: string,
-  direction?: number,
+  direction: number,
   activeFn: boolean
+}
+export interface CurrentKey {
+  title: string,
+  category: string
 }
 
 export interface Shortcut {

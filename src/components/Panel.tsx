@@ -35,6 +35,7 @@ const Panel = () => {
       <div className="menu">
         {userConfig && <button onClick={resetConfig}>Reset User Config</button>}
         <button onClick={toggleEditMode}>{editMode ? 'Activate' : 'Configure Panel'}</button>
+        <button onClick={() => window.location.reload()}>Reload</button>
       </div>
       {editMode ? 
         <Editor />

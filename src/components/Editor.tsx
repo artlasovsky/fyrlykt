@@ -28,7 +28,6 @@ const Editor = () => {
       setTitles(_titles)
     }
     if (!category) setTitle('—')
-    // else if (!activeKey.category) setTitle(titles[0])
     // eslint-disable-next-line
   }, [category])
   
@@ -51,8 +50,6 @@ const Editor = () => {
   }, [activeKey])
   
   const sameShortcut = () => {
-    console.log(category)
-    console.log(title)
     if (category !== '—' && title !== '—') {
       return activeKey.category === category && activeKey.title === title
     } else {

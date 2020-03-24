@@ -9,6 +9,9 @@ $font-family: 'Jost*';
 button {
   font-family: $font-family;
 }
+textarea, select, input, button { 
+  outline: none; 
+}
 
 body {
   margin: 0;

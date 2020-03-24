@@ -37,11 +37,11 @@ function createWindow() {
   })
   tray.setToolTip('Fyrlykt - Loupedeck with Resolve')
   tray.setContextMenu(contextMenu)
-  // mainWindow.hide()
-  // mainWindow.on('close', e => {
-  //   e.preventDefault()
-  //   mainWindow.hide()
-  // })
+  mainWindow.hide()
+  mainWindow.on('minimize', e => {
+    e.preventDefault()
+    mainWindow.hide()
+  })
   mainWindow.removeMenu()
   mainWindow.on('closed', () => mainWindow = null)
 }
