@@ -23,13 +23,19 @@ export const Store = () => {
     loadConfig() {
       const userConfig = join(userConfigPath, `loupedeck.json`)
       let configPath = remote.app.isPackaged ? 
-        join(remote.app.getAppPath(), './assets/loupedeck.json')
+        join(remote.app.getAppPath(), './assets/loupedeck.config.json')
         : 
-        './assets/loupedeck.json'
+        './assets/loupedeck.config.json'
+      let shortcutsPath = remote.app.isPackaged ?
+        join(remote.app.getAppPath(), './assets/resolve.shortcut.json')
+        :
+        './assets/resolve.shortcut.json'
+      const shortcuts = JSON.parse(fs.readFileSync(shortcutsPath, 'utf-8'))
+
       if (fs.existsSync(userConfig)) configPath = userConfig
-      const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
+      const panel = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
       console.log(fs.existsSync(userConfig) ? 'user config loaded' : 'default config loaded')
-      _setConfig(config)
+      _setConfig({...panel, ...shortcuts})
     },
     resetConfig() {
       const userConfig = join(userConfigPath, 'loupedeck.json')
@@ -95,8 +101,11 @@ export const Store = () => {
       _setActiveKey(getKey(newConfig, [ activeKey.id, activeKey.direction ] as [number, number], fn).instance)
       if (!fs.existsSync(userConfigPath)) fs.mkdirSync(userConfigPath)
       const configFileName = `${newConfig.panel.toLowerCase()}`
-      // const configFileName = `${newConfig.panel.toLowerCase()}_${newConfig.panel.toLowerCase().replace(' ', '-')}`
-      fs.writeFileSync(join(userConfigPath, `${configFileName}.json`), JSON.stringify(newConfig))
+      const configWithoutShortcuts = JSON.parse(JSON.stringify(newConfig))
+      delete configWithoutShortcuts.app
+      delete configWithoutShortcuts.shortcuts
+      // console.log(configWithoutShortcuts)
+      fs.writeFileSync(join(userConfigPath, `${configFileName}.json`), JSON.stringify(configWithoutShortcuts))
     }
   }
   const getters = {
