@@ -1,6 +1,7 @@
 ## Fyrlykt - Connect Loupedeck+ to DaVinci Resolve
 
 Author: Art Lasovsky [website](https://artlasovsky.com)
+
 Author of logo: Tanya Lasovsky [tanya.lasovsky.com](https://tanya.lasovsky.com)
 
 Special thanks for support for:
