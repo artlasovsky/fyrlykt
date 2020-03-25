@@ -15,7 +15,7 @@ const Panel = () => {
         const key = keyGetter(e)
         if (key.instance?.name === 'FN') fn = true
         if (key.instance) {
-          editMode ? setActiveKey(key.instance) : runCommand(key)
+          editMode ? setActiveKey(key.instance) : runCommand(key, config.app)
         }
       }
       let fn = false

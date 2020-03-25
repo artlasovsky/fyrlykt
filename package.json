@@ -22,7 +22,8 @@
       "node_modules/**/*",
       "assets/icon.ico",
       "assets/icon.png",
-      "assets/loupedeck.json"
+      "assets/loupedeck.config.json",
+      "assets/resolve.shortcut.json"
     ],
     "directories": {
       "buildResources": "assets"

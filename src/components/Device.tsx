@@ -13,10 +13,14 @@ const Device = () => {
   },[webMidi])
 
   if (webMidi) {
+    // console.log(config.description)
     return (
       <div className="device">
         <p>Connected: {JSON.stringify(device.name)}</p>
-        <p>Config App: {JSON.stringify(config.app)}</p>
+        <div className="config">
+          <p className="app">Config App: {JSON.stringify(config.appDisplayName)}</p>
+          <p className="description">{config.description}</p>
+        </div>
       </div>
     )
   } else {

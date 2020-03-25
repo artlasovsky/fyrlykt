@@ -14,7 +14,7 @@ export const Store = () => {
   const [webMidi, _setWebMidi]:[WebMidi, Function] = useState({} as WebMidi)
   const [device, _setDevice]:[Input, Function] = useState({} as Input)
   const [config, _setConfig]:[AppConfig, Function] = useState({} as AppConfig)
-  const [editMode, _setEditMode]:[boolean, Function] = useState(true)
+  const [editMode, _setEditMode]:[boolean, Function] = useState(isDev ? true : false)
   const [activeKey, _setActiveKey]:[Key, Function] = useState({} as Key)
   // const [currentKey, _setCurrentKey]:[CurrentKey, Function] = useState({} as CurrentKey)
   const userConfigPath = isDev ? './user' : remote.app.getAppPath().replace('app.asar', '')
@@ -105,7 +105,7 @@ export const Store = () => {
       delete configWithoutShortcuts.app
       delete configWithoutShortcuts.shortcuts
       // console.log(configWithoutShortcuts)
-      fs.writeFileSync(join(userConfigPath, `${configFileName}.json`), JSON.stringify(configWithoutShortcuts))
+      fs.writeFileSync(join(userConfigPath, `${configFileName}.json`), JSON.stringify(configWithoutShortcuts, null, 2))
     }
   }
   const getters = {
@@ -149,7 +149,9 @@ export interface Shortcut {
 
 export interface AppConfig {
   app: string,
+  appDisplayName: string,
   panel: string,
+  description: string,
   keys: Array<Key>, 
   knobs: Array<Key>, 
   shortcuts: Array<Shortcut>

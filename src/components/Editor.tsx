@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react'
 import StoreContext from '../store'
 import Key from './Editor/Key'
+import Shortcut from './Editor/Shortcut'
 
 const Editor = () => {
-  const { activeKey, config: { shortcuts }, setters: { saveActiveKey } } = useContext(StoreContext)
+  const { activeKey, config: { shortcuts } } = useContext(StoreContext)
   const [categories, setCategories]:[string[], Function] = useState([])
   const [titles, setTitles]:[string[], Function] = useState([])
   const [category, setCategory] = useState('—')
@@ -48,52 +49,21 @@ const Editor = () => {
       setTitle('—')
     }
   }, [activeKey])
-  
-  const sameShortcut = () => {
-    if (category !== '—' && title !== '—') {
-      return activeKey.category === category && activeKey.title === title
-    } else {
-      return true
-    }
-  }
-  const revertSelection = () => {
-    if (activeKey.title && activeKey.category) {
-      setTitle(activeKey.title)
-      setCategory(activeKey.category)
-    }
-  }
-  function sameShortcutShow () {
-    return !sameShortcut() ? 'show' : ''
-  }
 
   return (
     <div id="editor">
       <div className="select">
         <Key activeKey={activeKey}/>
-        {
-          activeKey.name ?
-          <div className="shortcut">
-            <p className={`activeKey ${sameShortcut() ? 'current' : ''} ${activeKey.title && activeKey.category ? 'defined' : ''}`}>
-              { activeKey.title && activeKey.category ? `${activeKey.title} - ${activeKey.category}` : 'not defined' }
-            </p>
-            <p className={`setter ${sameShortcutShow()}`}>New: {title} - {category}</p>
-            <div className={`buttons ${sameShortcutShow()}`}>
-              <button onClick={() => saveActiveKey(activeKey, category, title)}>Save</button>
-              <button onClick={revertSelection}>Cancel</button>
-            </div>
-          </div>
-          :
-          <div className="shortcut">
-            <p>shortcut info</p>
-          </div>
-        }
+        <Shortcut activeKey={activeKey} category={[ category, setCategory ]} title={[ title, setTitle ]}/>
       </div>
-      <div className="config">
+      <div className="list">
         <select className="category" value={category} size={10} onChange={(e) => setCategory(e.target.value)}>
           {categories?.map(category => <option value={category} key={category}>{category}</option>)}
         </select>
         <select className="shortcut" value={title} size={10} onChange={(e) => setTitle(e.target.value)}>
-          {titles?.map(title => <option value={title} key={title}>{title}</option>)}
+        {titles?.map(title => title.includes('{') && title.includes('}') ? 
+          <option key={title} disabled>──────</option> : 
+          <option value={title} key={title}>{title}</option>)}
         </select>
       </div>
     </div>

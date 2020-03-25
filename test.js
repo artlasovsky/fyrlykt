@@ -18,4 +18,8 @@
 // //Get the current active window
 // monitor.getActiveWindow(callback);
 
-console.log('testing')
+// console.log('testing')
+
+const { activeWindow } = require('./src/helpers/key')
+
+console.log(activeWindow())

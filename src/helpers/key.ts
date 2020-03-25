@@ -27,6 +27,9 @@ export const getKey = (config: AppConfig, [ keyID, direction ]: Array<number>, F
       const value = shortcuts.find(shortcut => shortcut.category === category && shortcut.title === title)?.value
       if (value) {
         const commands = value.split('~').map(command => {
+          // Replacing ctrl/alt with command/option on macOS
+          if (process.platform !== 'win32') command = command.replace('ctrl', 'command').replace('alt', 'option')
+          // Splitting config string to different types of commands
           if (command.includes('[') && command.includes(']')) {
             return { command: 'press', params: [ command.slice(1, -1) ] }
           }
@@ -38,7 +41,6 @@ export const getKey = (config: AppConfig, [ keyID, direction ]: Array<number>, F
           }
           return undefined
         }).filter(command => command !== undefined)
-        
         return commands as Array<PySend>
       } else return null
     }
@@ -48,11 +50,10 @@ export const getKey = (config: AppConfig, [ keyID, direction ]: Array<number>, F
   return { instance: null, shortcut: null }
 }
 
-export const runCommand = (key: { instance: Key | null, shortcut: PySend[] | null}) => {
+export const runCommand = (key: { instance: Key | null, shortcut: PySend[] | null}, app: string) => {
   if (key.shortcut) {
     for(let command of key.shortcut) {
-      send(JSON.stringify(command))
-      console.log(command)
+      send(JSON.stringify({...command, ...{ app }}))
     }
   }
 }
