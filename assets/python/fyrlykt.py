@@ -12,9 +12,6 @@ while True:
     command = json_data.get('command')
     params = json_data.get('params')
     app = json_data.get('app')
-    # print(app)
-    # print(gw.getActiveWindow().title)
-    # print(app in gw.getActiveWindow().title)
     if (app in gw.getActiveWindow().title):
       print('send shortcut to ' + app)
       getattr(pyautogui, command)(*params)
