@@ -5,8 +5,11 @@ Author: Art Lasovsky [(website)](https://artlasovsky.com)
 
 Author of logo: Tanya Lasovsky [(tanya.lasovsky.com)](https://tanya.lasovsky.com)
 
+
 Thanks for support and inspiration for:
 ``` Tanya Lasovsky, Neroud Suleiman, Loupedeck Dev Team ```
+
+Support further development of this app [(paypal)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KACYGFTZSTPBW)
 
 ### Compatibility
 I'm working and testing this app on Windows 10, but it should work on macOS too (all dependencies are cross platform)
