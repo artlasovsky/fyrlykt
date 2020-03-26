@@ -11,8 +11,8 @@ process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 900, height: 680,
-    minWidth:400, minHeight: 400,
+    width: 900, height: 600,
+    minWidth: 700, minHeight: 600,
     webPreferences: {
       nodeIntegration: true
     } 

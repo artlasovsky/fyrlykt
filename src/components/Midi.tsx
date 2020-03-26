@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 import webmidi, { WebMidi } from 'webmidi'
 import StoreContext, { Store } from '../store'
-import Device from './Device'
+// import Device from './Device'
 import Panel from './Panel'
+import Menu from './Menu'
 
 const Midi = () => {
   const store = useContext(StoreContext) as Store
@@ -29,7 +30,8 @@ const Midi = () => {
       //   <Panel />
       // </div> 
       <div className="midi">
-        <Device />
+        <Menu />
+        {/* <Device /> */}
         <Panel />
       </div> 
       : 

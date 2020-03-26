@@ -4,7 +4,7 @@ import { getKey, runCommand } from '../helpers/key'
 import Editor from './Editor'
 
 const Panel = () => {
-  const { device, config, editMode, setters: { resetConfig, toggleEditMode, setActiveKey }, getters: { userConfig } } = useContext(StoreContext)
+  const { device, config, editMode, setters: { setActiveKey } } = useContext(StoreContext)
   useEffect(() => {
     if (device.name) {
       const keyGetter = (e:any) => {
@@ -32,15 +32,10 @@ const Panel = () => {
 
   return (
     <section className="panel">
-      <div className="menu">
-        {userConfig && <button onClick={resetConfig}>Reset User Config</button>}
-        <button onClick={toggleEditMode}>{editMode ? 'Activate' : 'Configure Panel'}</button>
-        <button onClick={() => window.location.reload()}>Reload</button>
-      </div>
       {editMode ? 
         <Editor />
         :
-        <div>activated</div>
+        <div>Activated</div>
       }
     </section>
   )

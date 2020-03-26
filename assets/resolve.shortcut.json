@@ -1,6 +1,6 @@
 {
   "app": "DaVinci Resolve",
-  "appDisplayName": "DaVinci Resolve (Default)",
+  "appDisplayName": "DaVinci Resolve",
   "description": "Default Resolve Shortcuts",
   "shortcuts": [
     { "category": "DaVinci Resolve", "title": "Keyboard Customization...", "value": "{ctrl++alt++k}" },

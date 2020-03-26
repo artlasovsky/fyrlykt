@@ -35,7 +35,9 @@ export const Store = () => {
       if (fs.existsSync(userConfig)) configPath = userConfig
       const panel = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
       console.log(fs.existsSync(userConfig) ? 'user config loaded' : 'default config loaded')
-      _setConfig({...panel, ...shortcuts})
+      // console.log(panel)
+      // console.log(shortcuts)
+      _setConfig({...shortcuts, ...panel})
     },
     resetConfig() {
       const userConfig = join(userConfigPath, 'loupedeck.json')
@@ -103,8 +105,8 @@ export const Store = () => {
       const configFileName = `${newConfig.panel.toLowerCase()}`
       const configWithoutShortcuts = JSON.parse(JSON.stringify(newConfig))
       delete configWithoutShortcuts.app
+      configWithoutShortcuts.appDisplayName = 'DaVinci Resolve (User)'
       delete configWithoutShortcuts.shortcuts
-      // console.log(configWithoutShortcuts)
       fs.writeFileSync(join(userConfigPath, `${configFileName}.json`), JSON.stringify(configWithoutShortcuts, null, 2))
     }
   }
