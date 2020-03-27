@@ -107,8 +107,22 @@ export const Store = () => {
       delete configWithoutShortcuts.app
       configWithoutShortcuts.appDisplayName = 'DaVinci Resolve (User)'
       delete configWithoutShortcuts.shortcuts
-      fs.writeFileSync(join(userConfigPath, `${configFileName}.json`), JSON.stringify(configWithoutShortcuts, null, 2))
-    }
+      const userConfigFilePath = join(userConfigPath, `${configFileName}.json`)
+      fs.writeFileSync(userConfigFilePath, JSON.stringify(configWithoutShortcuts, null, 2))
+    },
+    // addCustomShortcut() {
+      // let userAppConfig = {} as { app: string, appDisplayName: string, shortcuts: Array<Shortcut>}
+      // if (fs.existsSync(userConfigFilePath)) {
+      //   userAppConfig = JSON.parse(fs.readFileSync(userConfigFilePath, 'utf-8'))
+      // } else {
+      //   userAppConfig = {
+      //     app: config.app,
+      //     appDisplayName: `${config.appDisplayName} (User)`,
+      //     shortcuts: []
+      //   }
+      // }
+      // userAppConfig.shortcuts.push()
+    // }
   }
   const getters = {
     get userConfig() {

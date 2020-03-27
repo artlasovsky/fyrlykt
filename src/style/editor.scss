@@ -40,9 +40,36 @@
   }
   .list {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
+    .category {
+      width: 40%;
+    }
     .shortcut {
-      width: 130%;
+      width: 60%;
+    }
+    .buttons {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      // align-items: center;
+    }
+    .categories {
+      width: 40%;
+    }
+    .titles {
+      width: 60%;
+    }
+    .category, .title {
+      width: calc(100% - 10px);
+      padding: 0px 10px;
+      &.active {
+        background-color: lightgray;
+        border-radius: 5px;
+      }
+      &.splitter {
+        opacity: .4;
+      }
     }
     select {
       width: 100%;

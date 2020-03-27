@@ -1,13 +1,11 @@
 ## Fyrlykt - Connect Loupedeck+ to DaVinci Resolve
-_Readme is in process of filling_
 
 Author: Art Lasovsky [(website)](https://artlasovsky.com)
 
 Author of logo: Tanya Lasovsky [(tanya.lasovsky.com)](https://tanya.lasovsky.com)
 
-
 Thanks for support and inspiration for:
-``` Tanya Lasovsky, Neroud Suleiman, Loupedeck Dev Team ```
+``` Tanya Lasovsky, Neroud Suleiman (for first donation!), Loupedeck Dev Team, DaVinci Resolve users community and to all who made this awesome tools (Electron.js, React.js, TypeScript and more) which helps me to start this project ```
 
 Support further development of this app [(paypal)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KACYGFTZSTPBW)
 
@@ -28,10 +26,15 @@ I'm working and testing this app on Windows 10, but it should work on macOS too 
 * Build App ``` yarn dist ```
 
 
-### Roadmap
+### Roadmap (in order of priority)
+* Support for original Loupedeck
 * UI improvements
+  * Customize and style lists
+  * Improve Selected Key design
+  * Improve Active Shortcut Panel design
+* Create own shortcuts
 * Add support multiple user configurations
-* Add support other loupedeck devices
-* Add support other midi panels
-* Add support for Color Wheels [DaVinci Resolve] 
+* Add support other midi devices
+* Add support for Color Wheels [DaVinci Resolve]
 * Add support for Page Switching [DaVinci Resolve]
+* Support for Loupedeck CT
