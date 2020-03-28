@@ -25,13 +25,8 @@ const Midi = () => {
   }, [store.webMidi])
   return (
       store.webMidi && store.device ?
-      // <div className="midi">
-      //   <Device />
-      //   <Panel />
-      // </div> 
       <div className="midi">
         <Menu />
-        {/* <Device /> */}
         <Panel />
       </div> 
       : 

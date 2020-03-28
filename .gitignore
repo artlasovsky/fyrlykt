@@ -12,7 +12,7 @@
 
 # python
 /assets/python/env
-/assets/python/dist
+# /assets/python/dist
 /assets/python/build
 /assets/python/__pycache__
 /assets/python/.vscode

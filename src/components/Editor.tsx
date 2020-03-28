@@ -69,25 +69,6 @@ const Editor = () => {
         <Shortcut activeKey={activeKey} category={[ category, setCategory ]} title={[ title, setTitle ]}/>
       </div>
       <div className="list">
-        {/* <select className="category" value={category} size={10} onChange={(e) => setCategory(e.target.value)}>
-          {categories?.map(category => <option value={category} key={category}>{category}</option>)}
-        </select>
-        <select className="shortcut" value={title} size={10} onChange={(e) => setTitle(e.target.value)}>
-        {titles?.map(title => title.includes('{') && title.includes('}') ? 
-          <option key={title} disabled>──────</option> : 
-          <option value={title} key={title}>{title}{shortcutValue(title)}</option>)}
-        </select> */}
-        {/* <div className="_categories">
-          <div className="wrapper">
-            {categories?.map(_category => 
-              <p className={`category ${_category === category ? 'active' : ''}`} 
-              onClick={() => setCategory(_category)} 
-              key={_category}>
-                {_category}
-              </p>
-            )}
-          </div>
-        </div> */}
         <List className="categories">
           {categories?.map(_category => 
             <p className={`category ${_category === category ? 'active' : ''}`} 
@@ -100,7 +81,7 @@ const Editor = () => {
         <List className="titles">
           {titles?.map(_title => 
             _title.includes('{') && _title.includes('}') ?
-            <p className="title splitter">──────</p>
+            <p className="title splitter" key={_title}>──────</p>
             :
             <p className={`title ${_title === title ? 'active' : ''}`} 
             onClick={() => setTitle(_title)}

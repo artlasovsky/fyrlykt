@@ -15,15 +15,16 @@ I'm working and testing this app on Windows 10, but it should work on macOS too 
 ### How to build
 * Install JS dependencies ``` yarn ```
 
-* Build Python exec
-  * create python virtual environment in "env" folder ``` py venv env ```
-  * activate virtual environment ``` {fyrlykt}\assets\python\env\scripts\activate ```
-  * install PyAutoGui ``` pip install pyautogui ```
-  * install PyInstaller ``` pip install pyinstaller ```
-  * build exec ``` yarn pydist ```
-
 * Development Mode ``` yarn dev ```
 * Build App ``` yarn dist ```
+
+* If you want to rebuild python (v.3) Windows exec (it should work with macOS too)
+  * Install PyInstaller (globally) ``` pip install pyinstaller ```
+  * Create python virtual environment in "env" folder ``` py venv env ```
+  * Activate virtual environment ``` {fyrlykt}\assets\python\env\scripts\activate ```
+  * Install PyAutoGui ``` pip install pyautogui ```
+  * Go back to the root of the project 
+  * Build exec ``` yarn pydist ```
 
 
 ### Roadmap (in order of priority)

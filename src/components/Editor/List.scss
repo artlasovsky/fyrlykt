@@ -16,6 +16,10 @@
     width: 2px;
     height: 100%;
     background-color: lightgray;
+    transition: opacity .3s ease-in-out;
+    &.hidden {
+      opacity: 0;
+    }
     &>.scrollThumb {
       position: absolute;
       top: 0px;
