@@ -1,4 +1,5 @@
 ## Fyrlykt - Connect Loupedeck+ to DaVinci Resolve
+_tested on Windows 10 (should work on macOS, but I can't check it)_
 
 Author: Art Lasovsky [(website)](https://artlasovsky.com)
 

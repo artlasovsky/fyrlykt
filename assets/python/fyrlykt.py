@@ -20,7 +20,10 @@ while True:
   if inp == "test":
     print("testing")
   if inp == "activeWin":
-    print(gw.getActiveWindow().title)
+    if sys.platform.startswith('win32'):
+      print(gw.getActiveWindow().title)
+    else:
+      print(gw.getActiveWindow())
   if inp == "close":
     print("closing")
     break
