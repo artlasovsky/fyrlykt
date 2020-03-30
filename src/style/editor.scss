@@ -63,7 +63,7 @@
       width: calc(100% - 10px);
       padding: 0px 10px;
       &.active {
-        background-color: lightgray;
+        background-color: rgb(230, 230, 230);
         border-radius: 5px;
       }
       &.splitter {

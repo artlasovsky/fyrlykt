@@ -1,4 +1,4 @@
-import { AppConfig, Key, Shortcut } from "../store"
+import { AppConfig, Key, Shortcut } from "../types"
 import { send } from './py'
 
 export const getKey = (config: AppConfig, [ keyID, direction ]: Array<number>, FN: boolean):{ instance: Key | null, shortcut: Array<PySend> | null }  => {

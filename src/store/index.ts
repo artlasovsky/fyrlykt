@@ -5,10 +5,9 @@ import { remote } from 'electron'
 import { join } from 'path'
 import isDev from 'electron-is-dev'
 import { getKey } from '../helpers/key'
+import { AppConfig, Key } from '../types'
 
 const StoreContext = createContext({} as ReturnType<typeof Store>)
-
-export default StoreContext
 
 export const Store = () => {
   const [webMidi, _setWebMidi]:[WebMidi, Function] = useState({} as WebMidi)
@@ -16,7 +15,6 @@ export const Store = () => {
   const [config, _setConfig]:[AppConfig, Function] = useState({} as AppConfig)
   const [editMode, _setEditMode]:[boolean, Function] = useState(isDev ? true : false)
   const [activeKey, _setActiveKey]:[Key, Function] = useState({} as Key)
-  // const [currentKey, _setCurrentKey]:[CurrentKey, Function] = useState({} as CurrentKey)
   const userConfigPath = isDev ? './user' : remote.app.getAppPath().replace('app.asar', '')
 
   const setters = {
@@ -142,42 +140,7 @@ export const Store = () => {
   }
 }
 
-export interface Key {
-  id: number,
-  name: string,
-  value: string | string[],
-  fn: string | string[],
-  title?: string,
-  category?: string,
-  direction: number,
-  activeFn: boolean
-}
-export interface CurrentKey {
-  title: string,
-  category: string
-}
 
-export interface Shortcut {
-  category: string,
-  title: string,
-  value: string
-}
-
-export interface AppConfig {
-  app: string,
-  appDisplayName: string,
-  panel: string,
-  description: string,
-  keys: Array<Key>, 
-  knobs: Array<Key>, 
-  shortcuts: Array<Shortcut>
-  // [key: string]: Array<Key | Shortcut> | string 
-}
-
-export interface State {
-  WebMidi: WebMidi,
-  device: Input,
-  Screen: string,
-  config: AppConfig
-}
 export type Store = ReturnType<typeof Store>
+
+export default StoreContext

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Key } from '../../store'
+import { Key } from '../../types'
 
 const KeyModule = ({ activeKey }: { activeKey: Key }) => {
   return (

@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import webmidi, { WebMidi } from 'webmidi'
 import StoreContext, { Store } from '../store'
-// import Device from './Device'
 import Panel from './Panel'
 import Menu from './Menu'
 

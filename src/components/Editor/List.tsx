@@ -9,15 +9,17 @@ const List:FC<{className: string}> = ({ children, className } ) => {
   const [scrollBar, setScrollBar] = useState('')
 
   useEffect(() => {
-    console.log('child change')
     if (element.clientHeight === -1) setScrollBar('hidden')
-    else if (element.clientHeight > element.scrollHeight) setScrollBar('hidden')
+    else if (element.clientHeight >= element.scrollHeight) setScrollBar('hidden')
     else setScrollBar('')
-  }, [children])
+    setTimeout(() => {
+      setScrollBar('hidden')
+    }, 600)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [children, element.scrollTop])
 
   const scrollHandler = (e:any) => {
     setElement(e.target as HTMLElement)
-    // console.log(element.clientHeight)
     // console.log(element.scrollHeight)
     if (element) {
       let ratio = element.scrollTop / ( element.scrollHeight - element.clientHeight)

@@ -51,16 +51,16 @@ const Editor = () => {
     }
   }, [activeKey])
 
-  const shortcutValue = (title:string) => {
-    // shortcuts.find(shortcut => shortcut.category && shortcut.title === title)?.value
-    // const shortcut = shortcuts.find(shortcut => shortcut.title === title && shortcut.category === category)
-    let value = ''
-    // if (shortcut) value = ` — ${shortcut.value.slice(1,-1).split('++').join(' + ').split(']~{').join(' , write ').split('}~[').join(' and ')}` 
-    return value
-  }
-  // const newCategory = () => {
-
+  // const shortcutValue = (title:string) => {
+  //   // shortcuts.find(shortcut => shortcut.category && shortcut.title === title)?.value
+  //   // const shortcut = shortcuts.find(shortcut => shortcut.title === title && shortcut.category === category)
+  //   let value = ''
+  //   // if (shortcut) value = ` — ${shortcut.value.slice(1,-1).split('++').join(' + ').split(']~{').join(' , write ').split('}~[').join(' and ')}` 
+  //   return value
   // }
+  // // const newCategory = () => {
+
+  // // }
 
   return (
     <div id="editor">
