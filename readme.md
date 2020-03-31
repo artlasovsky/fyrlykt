@@ -14,6 +14,23 @@ Support further development of this app [(paypal)](https://www.paypal.com/cgi-bi
 I'm working and testing this app on Windows 10, but it should work on macOS too (all dependencies are cross platform), 
 I tried to build it on virtual machine with macOS, but it fails...
 So if you have build it for macOS, please share it with others.
+!Important - you need to close original 'Loupedeck Setup Panel' because it's not possible to use two apps with one midi-device
+
+### What it can do?
+* I have saved all standard Resolve shortcuts and it available for binding to any key.
+* Application is sending this shortcuts only to DaVinci Resolve
+* It converts windows shortcuts to macOS compatible (changing 'ctrl' and 'alt' to 'command' and 'option')
+* It starts minimized and located in tray
+
+```
+To save shortcut for key:
+- Set application to 'config' mode ('Configure Panel' button)
+- Press any button or turn the knob and it will be showed in top left panel
+- If button has shortcut it will shown on top right panel
+- You can select other shortcut from list below and click save
+- Application will save your changes locally
+- Don't forget to 'activate' app back to being able to use it with Resolve
+```
 
 ### How to build
 * Install JS dependencies ``` yarn ```

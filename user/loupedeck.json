@@ -1,0 +1,1077 @@
+{
+  "appDisplayName": "DaVinci Resolve (User)",
+  "description": "Default Resolve Shortcuts",
+  "panel": "Loupedeck",
+  "keys": [
+    {
+      "id": 95,
+      "name": "Undo",
+      "value": "${Edit > Undo}$",
+      "fn": ""
+    },
+    {
+      "id": 96,
+      "name": "Redo",
+      "value": "${Edit > Redo}$",
+      "fn": ""
+    },
+    {
+      "id": 114,
+      "name": "L1",
+      "value": "${Color (Nodes) > Label Selected Node}$",
+      "fn": ""
+    },
+    {
+      "id": 115,
+      "name": "L2",
+      "value": "${Workspace > Switch to Page — Edit}$",
+      "fn": ""
+    },
+    {
+      "id": 116,
+      "name": "L3",
+      "value": "${Workspace > Switch to Page — Color}$",
+      "fn": ""
+    },
+    {
+      "id": 65,
+      "name": "--/Col",
+      "value": "${View > Primaries/Log Color Wheels}$",
+      "fn": "${Color (Nodes) > Extract Current Node}$"
+    },
+    {
+      "id": 66,
+      "name": "Shift",
+      "value": "${Color (Nodes) > Add Serial Node}$",
+      "fn": "${Workspace — Show Panel in Workspace > Clips}$"
+    },
+    {
+      "id": 67,
+      "name": "Ctrl",
+      "value": "${Color (Nodes) > Add Serial Before Current}$",
+      "fn": "${Workspace — Show Panel in Workspace > Nodes}$"
+    },
+    {
+      "id": 68,
+      "name": "Command",
+      "value": "",
+      "fn": "${Workspace — Show Panel in Workspace > LUTs}$"
+    },
+    {
+      "id": 69,
+      "name": "Alt",
+      "value": "${Color (Nodes) > Add Layer Node}$",
+      "fn": "${Workspace — Show Panel in Workspace > Scopes}$"
+    },
+    {
+      "id": 70,
+      "name": "Tab",
+      "value": "${Color (Nodes) > Add Parallel Node}$",
+      "fn": "{tab}"
+    },
+    {
+      "id": 92,
+      "name": "Copy",
+      "value": "${Edit > Copy}$",
+      "fn": ""
+    },
+    {
+      "id": 93,
+      "name": "Paste",
+      "value": "${Edit > Paste}$",
+      "fn": ""
+    },
+    {
+      "id": 49,
+      "name": "C1",
+      "value": "${Color (Nodes) > Enable/Disable Selected Node}$",
+      "fn": "${Workspace > Switch to Page — Color}$"
+    },
+    {
+      "id": 50,
+      "name": "C2",
+      "value": "${Color (Nodes) > Enable/Disable All Nodes}$",
+      "fn": ""
+    },
+    {
+      "id": 51,
+      "name": "C3",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 52,
+      "name": "C4",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 53,
+      "name": "C5",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 54,
+      "name": "C6",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 80,
+      "name": "P1",
+      "value": "${Custom Label > Primary}$",
+      "fn": "${Custom Label > v1}$"
+    },
+    {
+      "id": 81,
+      "name": "P2",
+      "value": "${Custom Label > Log}$",
+      "fn": "${Custom Label > v2}$"
+    },
+    {
+      "id": 82,
+      "name": "P3",
+      "value": "${Custom Label > Color}$",
+      "fn": "${Custom Label > v3}$"
+    },
+    {
+      "id": 83,
+      "name": "P4",
+      "value": "${Custom Label > Saturation}$",
+      "fn": "${Custom Label > v4}$"
+    },
+    {
+      "id": 84,
+      "name": "P5",
+      "value": "${Custom Label > Curves}$",
+      "fn": "${Custom Label > v5}$"
+    },
+    {
+      "id": 85,
+      "name": "P6",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 86,
+      "name": "P7",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 87,
+      "name": "P8",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 76,
+      "name": "Arrow Up",
+      "value": "${Nav > Up}$",
+      "fn": ""
+    },
+    {
+      "id": 77,
+      "name": "Arrow Down",
+      "value": "${Nav > Down}$",
+      "fn": ""
+    },
+    {
+      "id": 78,
+      "name": "Arrow Left",
+      "value": "${Nav > Left}$",
+      "fn": ""
+    },
+    {
+      "id": 79,
+      "name": "Arrow Right",
+      "value": "${Nav > Right}$",
+      "fn": ""
+    },
+    {
+      "id": 102,
+      "name": "Before After",
+      "value": "${View > Bypass All Grades}$",
+      "fn": ""
+    },
+    {
+      "id": 97,
+      "name": "Screen Mode",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 88,
+      "name": "Export",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 117,
+      "name": "Custom Mode",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 98,
+      "name": "Hue",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 99,
+      "name": "Sat",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 100,
+      "name": "Lum",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 101,
+      "name": "Clr / BW",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 110,
+      "name": "FN",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 48,
+      "name": "Control Dial",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 41,
+      "name": "D1",
+      "value": "${View > Zoom Viewer to Fit}$",
+      "fn": ""
+    },
+    {
+      "id": 42,
+      "name": "D2",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 46,
+      "name": "Contrast",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 45,
+      "name": "Clarity",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 44,
+      "name": "Shadows",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 40,
+      "name": "Highlights",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 34,
+      "name": "Blacks",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 35,
+      "name": "Whites",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 33,
+      "name": "Exposure",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 37,
+      "name": "Vibrance",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 36,
+      "name": "Saturation",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 38,
+      "name": "Temperature",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 39,
+      "name": "Tint",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 1,
+      "name": "Hue1",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 2,
+      "name": "Hue2",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 3,
+      "name": "Hue3",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 4,
+      "name": "Hue4",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 5,
+      "name": "Hue5",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 6,
+      "name": "Hue6",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 7,
+      "name": "Hue7",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 8,
+      "name": "Hue8",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 9,
+      "name": "Sat1",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 10,
+      "name": "Sat2",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 11,
+      "name": "Sat3",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 12,
+      "name": "Sat4",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 13,
+      "name": "Sat5",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 14,
+      "name": "Sat6",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 15,
+      "name": "Sat7",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 16,
+      "name": "Sat8",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 17,
+      "name": "Lum1",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 18,
+      "name": "Lum2",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 19,
+      "name": "Lum3",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 20,
+      "name": "Lum4",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 21,
+      "name": "Lum5",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 22,
+      "name": "Lum6",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 23,
+      "name": "Lum7",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 24,
+      "name": "Lum8",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 25,
+      "name": "BW1",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 26,
+      "name": "BW2",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 27,
+      "name": "BW3",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 28,
+      "name": "BW4",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 29,
+      "name": "BW5",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 30,
+      "name": "BW6",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 31,
+      "name": "BW7",
+      "value": "",
+      "fn": ""
+    },
+    {
+      "id": 32,
+      "name": "BW8",
+      "value": "",
+      "fn": ""
+    }
+  ],
+  "knobs": [
+    {
+      "id": 48,
+      "name": "Control Dial",
+      "value": [
+        "${Color (Nodes) > Previous Node}$",
+        "${Color (Nodes) > Next Node}$"
+      ],
+      "fn": [
+        "${Nav > Left}$",
+        "${Nav > Right}$"
+      ]
+    },
+    {
+      "id": 41,
+      "name": "D1",
+      "value": [
+        "${View > Zoom Out}$",
+        "${View > Zoom In}$"
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 42,
+      "name": "D2",
+      "value": [
+        "${Nav > Left}$",
+        "${Nav > Right}$"
+      ],
+      "fn": [
+        "${Nav > Down}$",
+        "${Nav > Up}$"
+      ]
+    },
+    {
+      "id": 46,
+      "name": "Contrast",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 45,
+      "name": "Clarity",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 44,
+      "name": "Shadows",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 40,
+      "name": "Highlights",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Blacks",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Whites",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Exposure",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Vibrance",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 36,
+      "name": "Saturation",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 38,
+      "name": "Temperature",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 39,
+      "name": "Tint",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Hue1",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Hue2",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Hue3",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Hue4",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Hue5",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Hue6",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Hue7",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Hue8",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Sat1",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Sat2",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Sat3",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Sat4",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Sat5",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Sat6",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Sat7",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Sat8",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Lum1",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Lum2",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Lum3",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Lum4",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Lum5",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Lum6",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Lum7",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Lum8",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 25,
+      "name": "BW1",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 26,
+      "name": "BW2",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 27,
+      "name": "BW3",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 28,
+      "name": "BW4",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 29,
+      "name": "BW5",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 30,
+      "name": "BW6",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 31,
+      "name": "BW7",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 32,
+      "name": "BW8",
+      "value": [
+        "",
+        ""
+      ],
+      "fn": [
+        "",
+        ""
+      ]
+    }
+  ]
+}
