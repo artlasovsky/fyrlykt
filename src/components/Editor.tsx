@@ -51,16 +51,14 @@ const Editor = () => {
     }
   }, [activeKey])
 
-  // const shortcutValue = (title:string) => {
-  //   // shortcuts.find(shortcut => shortcut.category && shortcut.title === title)?.value
-  //   // const shortcut = shortcuts.find(shortcut => shortcut.title === title && shortcut.category === category)
-  //   let value = ''
-  //   // if (shortcut) value = ` — ${shortcut.value.slice(1,-1).split('++').join(' + ').split(']~{').join(' , write ').split('}~[').join(' and ')}` 
-  //   return value
-  // }
-  // // const newCategory = () => {
-
-  // // }
+  const shortcutValue = (title:string) => {
+    console.log(title)
+    // shortcuts.find(shortcut => shortcut.category && shortcut.title === title)?.value
+    const shortcut = shortcuts.find(shortcut => shortcut.title === title && shortcut.category === category)
+    let value = <span></span>
+    if (shortcut) value = <span className="shortcutValue">{shortcut.value.slice(1,-1).split('++').join(' + ').split(']~{').join(' , write ').split('}~[').join(' and ').toUpperCase()}</span>
+    return value
+  }
 
   return (
     <div id="editor">
@@ -83,11 +81,16 @@ const Editor = () => {
             _title.includes('{') && _title.includes('}') ?
             <p className="title splitter" key={_title}>──────</p>
             :
-            <p className={`title ${_title === title ? 'active' : ''}`} 
+            <div className={`title ${_title === title ? 'active' : ''}`} 
             onClick={() => setTitle(_title)}
             key={_title}>
-               {_title}
-            </p>
+              <p className="name">
+                {_title}<br/>{shortcutValue(_title)}
+              </p>
+              { _title !== '—' && <div className="controls">
+                {/* <button>edit</button> */}
+              </div>}
+            </div>
           )}
         </List>
       </div>

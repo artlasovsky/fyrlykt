@@ -70,6 +70,21 @@
         opacity: .4;
       }
     }
+    .title {
+      display: flex;
+      justify-content: space-between;
+      .name {
+        display: flex;
+        flex-direction: column;
+        .shortcutValue {
+          opacity: .6;
+          font-size: 10px;
+          padding-left: 10px;
+          margin-bottom: 5px;
+        }
+      }
+    }
+    
     select {
       width: 100%;
       font-family: 'Jost*';
