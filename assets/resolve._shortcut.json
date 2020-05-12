@@ -3,6 +3,13 @@
   "appDisplayName": "DaVinci Resolve",
   "description": "Default Resolve Shortcuts",
   "shortcuts": [
+    { "category": "Fyrlykt - Color", "title": "Gamma Decrease", "value": "{drag_275:945:-5:0:left}"},
+    { "category": "Fyrlykt - Color", "title": "Gamma Increase", "value": "{drag_275:945:5:0:left}"},
+    { "category": "Fyrlykt - Color", "title": "Temp Decrease", "value": "{click_105:1035:left}~{drag_180:1035:-1:0:left}"},
+    { "category": "Fyrlykt - Color", "title": "Temp Increase", "value": "{click_105:1035:left}~{drag_180:1035:1:0:left}"},
+    { "category": "Fyrlykt - Color", "title": "Contrast Decrease", "value": "{click_90:1035:left}~{drag_255:1033:-10:0:left}"},
+    { "category": "Fyrlykt - Color", "title": "Contrast Increase", "value": "{click_90:1035:left}~{drag_255:1033:10:0:left}"},
+    { "category": "Fyrlykt - Color", "title": "Save Project As...", "value": "{s++ctrl++shift}"},
     { "category": "DaVinci Resolve", "title": "Keyboard Customization...", "value": "{k++ctrl++alt}" },
     { "category": "DaVinci Resolve", "title": "Preferences...", "value": "{,++ctrl}" },
     { "category": "DaVinci Resolve", "title": "Quit DaVinci Resolve", "value": "{q++ctrl}" },

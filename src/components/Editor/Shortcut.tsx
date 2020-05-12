@@ -20,9 +20,14 @@ const Shortcut = ({ activeKey, category: [ category, setCategory ], title: [ tit
     return !sameShortcut() ? 'show' : ''
   }
   const revertSelection = () => {
+    console.log(title)
+    console.log(activeKey.title)
     if (activeKey.title && activeKey.category) {
       setTitle(activeKey.title)
       setCategory(activeKey.category)
+    } else {
+      setTitle('')
+      setCategory('')
     }
   }
   
@@ -32,7 +37,7 @@ const Shortcut = ({ activeKey, category: [ category, setCategory ], title: [ tit
       <p className={`activeKey ${sameShortcut() ? 'current' : ''} ${activeKey.title && activeKey.category ? 'defined' : ''}`}>
         { activeKey.title && activeKey.category ? `${activeKey.title} - ${activeKey.category}` : 'not defined' }
       </p>
-      <p className={`setter ${sameShortcutShow()}`}>New: {title} - {category}</p>
+      {title && category && <p className={`setter ${sameShortcutShow()}`}>New: {title} - {category}</p>}
       <div className={`buttons ${sameShortcutShow()}`}>
         <button onClick={() => saveActiveKey(activeKey, category, title)}>Save</button>
         <button onClick={revertSelection}>Cancel</button>

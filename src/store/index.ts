@@ -27,7 +27,7 @@ export const Store = () => {
       let shortcutsPath = remote.app.isPackaged ?
         join(remote.app.getAppPath(), './assets/resolve.shortcut.json')
         :
-        './assets/resolve.shortcut.json'
+        './assets/resolve._shortcut.json' // in DEV editing "_shortcut" version
       const shortcuts = JSON.parse(fs.readFileSync(shortcutsPath, 'utf-8'))
 
       if (fs.existsSync(userConfig)) configPath = userConfig
