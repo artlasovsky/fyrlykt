@@ -6,11 +6,17 @@
   font-size: 12px;
   font-weight: 300;
   color: #818181;
-  a {
+  .link {
+    max-width: 100px;
+    text-align: center;
     color: #818181;
     text-decoration: none;
     &:hover {
       text-decoration: underline;
+      cursor: pointer;
+    }
+    &.update {
+      color: #a01e1e;
     }
   }
   .left {
@@ -26,6 +32,7 @@
   }
   .right {
     display: flex;
+    align-items: center;
     .splitter {
       margin: 0px 15px;
     }
@@ -36,11 +43,8 @@
     background-color: #B9B9B9;
     margin: 0px 20px;
   }
-  .link:hover {
-    text-decoration: underline;
-    cursor: pointer;
-  }
   .button-group {
+    min-width: 160px;
     button {
       padding: 0px 10px;
       background-color: transparent;

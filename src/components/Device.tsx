@@ -12,12 +12,13 @@ const Device = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[webMidi])
 
-  if (webMidi) {
+  if (webMidi && device) {
     return (
       <div className="device">
-        <p>{device.name}</p>
-        <div className="splitter"></div>
-        <p className="app">{config.appDisplayName}</p>
+        <div className="app">
+          <p>{device.name}</p>
+          <p className="app">{config.appDisplayName}</p>
+        </div>
         <div className="splitter"></div>
         <div className="button-group">
           <button onClick={toggleEditMode}>{editMode ? 'Activate' : 'Configure Panel'}</button>

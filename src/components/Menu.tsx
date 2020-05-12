@@ -1,19 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Device from './Device'
 import '../style/menu.scss'
 import { remote, shell } from 'electron'
 
 const Menu = () => {
-  // const close = () => {
-  //   console.log('close')
-  //   let w = remote.getCurrentWindow()
-  //   w.close()
-  // }
-  // const hide = () => {
-  //   console.log('close')
-  //   let w = remote.getCurrentWindow()
-  //   w.hide()
-  // }
+  const [lastRelease, setLastRelease] = useState({ version: '', link: ''})
+  const appVersion = remote.app.getVersion()
+  useEffect(() => {
+    const getVersion = async () => {
+      const response = await fetch('https://api.github.com/repos/artlasovsky/fyrlykt/releases/latest')
+      const release = await response.json()
+      // setLastBuild({ version: '0.1.3', link: lastBuild.browser_download_url })
+      setLastRelease({ version: release.tag_name, link: release.browser_download_url })
+    }
+    getVersion()
+  },[])
 
   return (
   <div className="menu">
@@ -27,11 +28,11 @@ const Menu = () => {
       <div className="splitter"></div>
       <p className="link" onClick={() => shell.openExternal("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KACYGFTZSTPBW")}>Donate</p>
       <div className="splitter"></div>
-      <p>{remote.app.getVersion()}</p>
-      {/* <div className="window-controls">
-        <p className="close link" onClick={hide}>hide</p>
-        <p className="close link" onClick={close}>close</p>
-      </div> */}
+      {lastRelease.version?.length > 0 && appVersion.replace(/[^0-9]/, '') < lastRelease.version.replace(/[^0-9]/, '') ?
+        <p className="link update" onClick={() => shell.openExternal("https://artlasovsky.com/loupedeck-resolve")}>Update Available! ({lastRelease.version})</p>
+        :
+        <p>{appVersion}</p>
+      }
     </div>
   </div>
   )

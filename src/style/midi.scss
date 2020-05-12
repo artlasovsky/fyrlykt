@@ -1,12 +1,31 @@
 .midi {
+  z-index: 2;
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%;
+  background-color: #fff;
 }
 .not-connected {
+  z-index: 0;
+  background-color: white;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 100vh;
+  button {
+    margin-top: 5px;
+    padding: 0px 10px;
+    background-color: transparent;
+    border: 1px solid #B9B9B9;
+    border-radius: 5px;
+    &:hover {
+      background-color: rgba(185, 185, 185, 0.1);
+    }
+  }
 }

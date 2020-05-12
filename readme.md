@@ -35,16 +35,10 @@ To save shortcut for key:
 ### How to build
 * Install JS dependencies ``` yarn ```
 
+* Build Go binary
+  * Install 
 * Development Mode ``` yarn dev ```
 * Build App ``` yarn dist ```
-
-* If you want to rebuild Python (I build it with v.3.8) Windows exec (it should work with macOS too)
-  * Install PyInstaller (globally) ``` pip install pyinstaller ```
-  * Create python virtual environment in 'assets/python/' in 'env' directory ``` py venv env ```
-  * Activate virtual environment ``` {fyrlykt}\assets\python\env\scripts\activate ```
-  * Install PyAutoGui ``` pip install pyautogui ```
-  * Go back to the root of the project 
-  * Build exec ``` yarn pydist ```
 
 
 ### Roadmap (in order of priority)

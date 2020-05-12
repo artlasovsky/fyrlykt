@@ -10,13 +10,11 @@
 /build
 /dist
 
-# python
-/assets/python/env
-# /assets/python/dist
-/assets/python/build
-/assets/python/__pycache__
-/assets/python/.vscode
-fyrlykt.spec
+# go
+assets/go/*
+!assets/go/**.mod
+!assets/go/**.sum
+!assets/go/**.go
 # misc
 .DS_Store
 .env.local

@@ -11,7 +11,7 @@ const StoreContext = createContext({} as ReturnType<typeof Store>)
 
 export const Store = () => {
   const [webMidi, _setWebMidi]:[WebMidi, Function] = useState({} as WebMidi)
-  const [device, _setDevice]:[Input, Function] = useState({} as Input)
+  const [device, _setDevice]:[Input | undefined, Function] = useState(undefined as Input | undefined)
   const [config, _setConfig]:[AppConfig, Function] = useState({} as AppConfig)
   const [editMode, _setEditMode]:[boolean, Function] = useState(isDev ? true : false)
   const [activeKey, _setActiveKey]:[Key, Function] = useState({} as Key)

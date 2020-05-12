@@ -52,7 +52,7 @@ const Editor = () => {
   }, [activeKey])
 
   const shortcutValue = (title:string) => {
-    console.log(title)
+    // console.log(title)
     // shortcuts.find(shortcut => shortcut.category && shortcut.title === title)?.value
     const shortcut = shortcuts.find(shortcut => shortcut.title === title && shortcut.category === category)
     let value = <span></span>

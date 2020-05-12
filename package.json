@@ -1,6 +1,6 @@
 {
   "name": "fyrlykt",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "main": "public/electron.js",
   "homepage": "./",
@@ -30,8 +30,9 @@
     },
     "extraResources": [
       {
-        "from": "./assets/python/dist",
-        "to": "assets/python"
+        "from": "assets/go",
+        "to": "assets/go",
+        "filter": ["fyrlykt.**"]
       }
     ]
   },
@@ -55,8 +56,7 @@
     "dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
     "dist": "yarn build && electron-builder build",
-    "dist portable": "yarn build && electron-builder build -w portable",
-    "pydist": "pyinstaller ./assets/python/fyrlykt.py -F -p ./assets/python/env/lib/site-packages --distpath ./assets/python/dist"
+    "dist-portable": "yarn build && electron-builder build -w portable"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,4 +1,5 @@
 const { app, BrowserWindow, Tray, Menu } = require('electron')
+const { spawn } = require('child_process')
 
 const path = require('path')
 const isDev = require('electron-is-dev')
@@ -9,10 +10,22 @@ let tray = null
 delete process.env.ELECTRON_ENABLE_SECURITY_WARNINGS;
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
 
+const startServer = () => {
+  const assets = app.isPackaged ? path.join(process.resourcesPath, './assets/go') : './assets/go'
+  const goApp = spawn(path.join(assets, 'fyrlykt'))
+  goApp.on('error', err => console.log(err))
+  goApp.on('close', () => console.log('closed'))
+  goApp.on('exit', (exitCode) => console.log(`Exited with ${exitCode}`))
+  goApp.stdout.on('data', data => console.log(data.toString()))
+} 
+
 function createWindow() {
+
+  startServer()
+
   mainWindow = new BrowserWindow({
-    width: 900, height: 600,
-    minWidth: 700, minHeight: 600,
+    width: 1000, height: 600,
+    minWidth: 900, minHeight: 600,
     webPreferences: {
       nodeIntegration: true
     } 

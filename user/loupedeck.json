@@ -108,13 +108,13 @@
     {
       "id": 53,
       "name": "C5",
-      "value": "",
+      "value": "${Timeline > Join Clips}$",
       "fn": ""
     },
     {
       "id": 54,
       "name": "C6",
-      "value": "",
+      "value": "${Timeline > Split Clip}$",
       "fn": ""
     },
     {
@@ -561,8 +561,8 @@
       "id": 46,
       "name": "Contrast",
       "value": [
-        "",
-        ""
+        "${Fyrlykt - Color > Contrast Decrease}$",
+        "${Fyrlykt - Color > Contrast Increase}$"
       ],
       "fn": [
         "",
@@ -645,8 +645,8 @@
       "id": 37,
       "name": "Vibrance",
       "value": [
-        "",
-        ""
+        "${Fyrlykt - Color > Gamma Decrease}$",
+        "${Fyrlykt - Color > Gamma Increase}$"
       ],
       "fn": [
         "",
@@ -669,8 +669,8 @@
       "id": 38,
       "name": "Temperature",
       "value": [
-        "",
-        ""
+        "${Fyrlykt - Color > Temp Decrease}$",
+        "${Fyrlykt - Color > Temp Increase}$"
       ],
       "fn": [
         "",
