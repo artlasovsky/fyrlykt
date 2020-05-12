@@ -36,10 +36,20 @@ To save shortcut for key:
 * Install JS dependencies ``` yarn ```
 
 * Build Go binary
-  * Install 
+  * Install Go
+  * ``` cd .\assets\go ```
+  * to run ``` go run . ```
+  * to build binary ``` go build . ```
 * Development Mode ``` yarn dev ```
 * Build App ``` yarn dist ```
 
+
+### Changes
+* Move to Golang (from Python)
+* Fix issues with "FN + Knob" shortcuts
+* UI Improvements
+* Added "new version" notifications
+* Started testing (not in production yet) custom controls for other Resolve functions (mainly in the Color Page at this moment...)
 
 ### Roadmap (in order of priority)
 * Fixes:
