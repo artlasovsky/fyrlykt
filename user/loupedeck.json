@@ -1,5 +1,5 @@
 {
-  "appDisplayName": "DaVinci Resolve (User - Test)",
+  "appDisplayName": "DaVinci Resolve (User)",
   "description": "Default Resolve Shortcuts",
   "panel": "Loupedeck",
   "keys": [
@@ -31,7 +31,7 @@
       "id": 116,
       "name": "L3",
       "value": "${Workspace > Switch to Page — Color}$",
-      "fn": ""
+      "fn": "${Edit > Delete Selected}$"
     },
     {
       "id": 65,

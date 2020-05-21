@@ -1,4 +1,5 @@
 import { AppConfig, Key, Shortcut } from "../types"
+import { ipcRenderer } from "electron"
 
 export const getKey = (config: AppConfig, [ keyID, direction ]: Array<number>, FN: boolean):{ instance: Key | null, shortcut: Array<GoSend> | null }  => {
   const list: Array<Key> = direction === 64 ? config.keys : config.knobs
@@ -62,10 +63,19 @@ export const getKey = (config: AppConfig, [ keyID, direction ]: Array<number>, F
   return { instance: null, shortcut: null }
 }
 
+export interface GoMessage {
+  AppName: string,
+  AppCommand: {
+    Command: string,
+    Params: string[],
+    ExtraParams?: string[]
+  }
+}
+
 export const runCommand = (key: { instance: Key | null, shortcut: GoSend[] | null}, app: string) => {
   if (key.shortcut) {
     for(let { command, params, extraParams } of key.shortcut) {
-      const message = {
+      const message:GoMessage = {
         AppName: app,
         AppCommand: {
           Command: command,
@@ -73,11 +83,15 @@ export const runCommand = (key: { instance: Key | null, shortcut: GoSend[] | nul
           ExtraParams: extraParams?.map(param => String(param))
         }
       }
-      fetch('http://localhost:4004', {
-        method: 'POST',
-        body: JSON.stringify(message),
-        mode: 'no-cors'
-      }).then().catch(e => console.log(e))
+      // ipcRenderer.on('response', (event, arg) => {
+      //   console.log(`[_go]: ${JSON.stringify(arg)}`)
+      // })
+      ipcRenderer.send('shortcut', message)
+      // fetch('http://localhost:4004', {
+      //   method: 'POST',
+      //   body: JSON.stringify(message),
+      //   mode: 'no-cors'
+      // }).then().catch(e => console.log(e))
     }
   }
 }

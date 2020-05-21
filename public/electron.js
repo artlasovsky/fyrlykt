@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Tray, Menu } = require('electron')
+const { app, BrowserWindow, Tray, Menu, ipcMain } = require('electron')
 const { spawn } = require('child_process')
 
 const path = require('path')
@@ -16,7 +16,16 @@ const startServer = () => {
   goApp.on('error', err => console.log(err))
   goApp.on('close', () => console.log('closed'))
   goApp.on('exit', (exitCode) => console.log(`Exited with ${exitCode}`))
-  goApp.stdout.on('data', data => console.log(data.toString()))
+  if (!app.isPackaged) {
+    goApp.stdout.on('data', data => {
+      console.log(data.toString())
+    })
+  }
+  ipcMain.on('shortcut', (event, shortcut) => {
+    // console.log(JSON.stringify(shortcut) + '\n')
+    goApp.stdin.write(JSON.stringify(shortcut) + '\n')
+    // event.reply('response', shortcut)
+  })
 } 
 
 function createWindow() {
