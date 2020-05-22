@@ -55,6 +55,8 @@ To save shortcut for key:
 * Fixes:
   * Fix double scroll on HSL wheels
 * Support for original Loupedeck
+* Add mouse actions (click, mouse down, mouse up)
+* Switch to change the way of reading LD keys: key down + key up or click (key down + key up)
 * UI improvements
   * Customize and style lists
   * Improve Selected Key design

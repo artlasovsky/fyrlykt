@@ -4,7 +4,7 @@ import { getKey, runCommand } from '../helpers/key'
 import Editor from './Editor'
 
 const Panel = () => {
-  const { device, config, editMode, setters: { setActiveKey } } = useContext(StoreContext)
+  const { device, config, editMode, userConfigPath, setters: { setActiveKey } } = useContext(StoreContext)
   useEffect(() => {
     if (device?.name) {
       const keyGetter = (e:any) => {
@@ -37,6 +37,7 @@ const Panel = () => {
         :
         <div className="activated-message">
           <h2>App is activated</h2>
+          {/* <p>{userConfigPath}</p> */}
           <p>Open {config.app} to use it</p>
           <p>To edit configuration click "Configure Panel" on the top menu.</p>
         </div>
