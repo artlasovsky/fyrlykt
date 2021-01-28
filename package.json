@@ -79,7 +79,7 @@
     "@rescripts/cli": "^0.0.13",
     "@rescripts/rescript-env": "^0.0.11",
     "concurrently": "^5.1.0",
-    "electron": "^8.1.1",
+    "electron": "^9.4.0",
     "electron-builder": "^22.4.1",
     "wait-on": "^4.0.1"
   }
