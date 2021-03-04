@@ -2,10 +2,9 @@ import { MainContext } from '@src/preload'
 import logo from '@static/logo.png'
 import React, { useState } from 'react'
 import { hot } from 'react-hot-loader'
-import { ChildProcessWithoutNullStreams } from 'child_process'
 
-const mainContext: MainContext = (window as any).api
-const { core } = mainContext
+//@ts-ignore
+const { core, fs }: MainContext = window.api
 
 const App = () => {
   const [counter, setCounter] = useState(0)
@@ -21,7 +20,7 @@ const App = () => {
     Webpack Typescript
   </h2>
 
-  <p className='teaser' onClick={() => console.log(mainContext.fs.readdirSync(''))}>
+  <p className='teaser' onClick={() => console.log(fs.readdirSync(''))}>
     Minimal boilerplate for writing Desktop Applications using Electron,
     React, Webpack & TypeScript. This project makes use of latest packages
     like electron, react, typescript & webpack to serve the best
