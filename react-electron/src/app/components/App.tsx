@@ -1,10 +1,56 @@
 import { MainContext } from '@src/preload'
+import { styled } from '@src/stitches.config'
 import logo from '@static/logo.png'
 import React, { useState } from 'react'
 import { hot } from 'react-hot-loader'
 
 //@ts-ignore
 const { core, fs }: MainContext = window.api
+
+const ButtonGroup = styled('div', {
+  display: 'flex',
+  variants: {
+    direction: {
+      horizontal: {
+        '> button': {
+          '&:not(:first-child)': {
+            marginLeft: '1em'
+          }
+        }
+      },
+      vertical: {
+
+      }
+    }
+  },
+  defaultVariants: {
+    direction: 'horizontal'
+  }
+})
+
+const AppContainer = styled('div', {
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: '$normal',
+  color: '$text'
+})
+
+const Button = styled('button', {
+  backgroundColor: '$buttonBg',
+  color: '$text',
+  border: 'none',
+  padding: '$normal',
+  borderRadius: '$normal',
+  fontSize: '$base',
+  outline: 'none',
+  minWidth: '10rem',
+  '&:hover, &:active': {
+    filter: 'brightness(120%)'
+  }
+})
 
 const App = () => {
   const [counter, setCounter] = useState(0)
@@ -14,47 +60,23 @@ const App = () => {
   const runCore = () => setCorePID(core.run())
   const killCore = () => corePID && core.kill(corePID)
   
-  return <div className='container'>
-  <h2 className='heading'>
-    <img src={logo} width='32' title='Codesbiome' /> &nbsp; Electron React
-    Webpack Typescript
-  </h2>
-
-  <p className='teaser' onClick={() => console.log(fs.readdirSync(''))}>
-    Minimal boilerplate for writing Desktop Applications using Electron,
-    React, Webpack & TypeScript. This project makes use of latest packages
-    like electron, react, typescript & webpack to serve the best
-    environment for development.
-  </p>
-  <p className='versions'>
-    <span className='version teaser'>
-      Electron <span id='electron-version'></span>
-    </span>
-    &nbsp;&nbsp;
-    <span className='version teaser'>
-      Chrome <span id='chrome-version'></span>
-    </span>
-    &nbsp;&nbsp;
-    <span className='version teaser'>
-      Node <span id='node-version'></span>
-    </span>
-  </p>
-  <p>
-    Click below button to update the state (counter) using 🔥
-    react-hot-loader (HMR). Component will not lose their state when
-    modifying their source code.
-    <br />
-  </p>
-  <button
-    onClick={(): void =>
-      setCounter(counter + 1)
-    }
-  >
-    Counter &nbsp; <span>{counter}</span>
-  </button>
-  <button onClick={runCore}>Run Core</button>
-  <button onClick={killCore}>Kill Core</button>
-</div>
+  return <AppContainer>
+    <h2 className='heading'>
+      <img src={logo} width='32' title='Codesbiome' /> &nbsp; Electron React
+      Webpack Typescript
+    </h2>
+    <ButtonGroup>
+      <Button
+        onClick={(): void =>
+          setCounter(counter + 1)
+        }
+      >
+        Counter &nbsp; <span>{counter}</span>
+      </Button>
+      <Button onClick={runCore}>Run Core</Button>
+      <Button onClick={killCore}>Kill Core</Button>
+    </ButtonGroup>
+  </AppContainer>
 }
 
 export default hot(module)(App);
