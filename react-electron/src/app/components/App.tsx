@@ -1,11 +1,12 @@
-import { MainContext } from '@src/preload'
+import { coreState } from '@src/state'
 import { styled } from '@src/stitches.config'
 import logo from '@static/logo.png'
 import React, { useState } from 'react'
 import { hot } from 'react-hot-loader'
+import { useProxy } from 'valtio'
 
-//@ts-ignore
-const { core, fs }: MainContext = window.api
+// //@ts-ignore
+// const { core, fs }: MainContext = window.api
 
 const ButtonGroup = styled('div', {
   display: 'flex',
@@ -53,13 +54,9 @@ const Button = styled('button', {
 })
 
 const App = () => {
+  const core = useProxy(coreState)
   const [counter, setCounter] = useState(0)
 
-  const [corePID, setCorePID] = useState(null as null | number)
-
-  const runCore = () => setCorePID(core.run())
-  const killCore = () => corePID && core.kill(corePID)
-  
   return <AppContainer>
     <h2 className='heading'>
       <img src={logo} width='32' title='Codesbiome' /> &nbsp; Electron React
@@ -73,8 +70,8 @@ const App = () => {
       >
         Counter &nbsp; <span>{counter}</span>
       </Button>
-      <Button onClick={runCore}>Run Core</Button>
-      <Button onClick={killCore}>Kill Core</Button>
+      <Button onClick={core.run}>Run Core</Button>
+      <Button onClick={core.kill}>Kill Core</Button>
     </ButtonGroup>
   </AppContainer>
 }

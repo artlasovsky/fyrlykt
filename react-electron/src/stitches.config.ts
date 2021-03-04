@@ -29,7 +29,8 @@ export const { styled, global } = createCss({
 
 export const globalStyles = global({
   'html, body, #app': {
-    height: '100%'
+    height: '100%',
+    fontFamily: '$main'
   },
   '*': {
     boxSizing: 'border-box',

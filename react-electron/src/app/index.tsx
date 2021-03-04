@@ -3,6 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/App'
 
+/** App & Global Styles from Stitches */
 ReactDOM.render(<>
   <App />
   <style>{globalStyles() as any}</style>
