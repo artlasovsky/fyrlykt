@@ -10,10 +10,14 @@ const initialConfigFiles = () => {
   const loupedeckConfig = {} 
   const resolveConfig = {} // Custom Commands + Parsed from Resolve Shortcuts list
   const userData = app.getPath('userData')
+
+  // Shortcuts depends on system
   // create config files from defaults if it not yet exists
 }
 
 let corePID: number
+
+const resourcesPath = isDev ? join(process.cwd(), 'resources') : process.resourcesPath
 
 const api = {
   test: () => console.log('test from preload'),
@@ -22,9 +26,9 @@ const api = {
   join,
   core: {
     run: () => {
-      const appPath = join(process.cwd(), 'resources/fyrlykt-core.exe')
-      const loupedeckConfig = join(process.cwd(), 'resources/loupdeck.config.json')
-      const resolveConfig = join(process.cwd(), 'resources/resolve.config.json')
+      const appPath = join(resourcesPath ,`/fyrlykt-core${process.platform === 'win32' ? '.exe' : ''}`)
+      const loupedeckConfig = join(resourcesPath, 'loupedeck.config.json')
+      const resolveConfig = join(resourcesPath, 'resolve.config.json')
       const app = spawn(appPath, [loupedeckConfig, resolveConfig])
       app.stdout.on('data', data => console.log(String(data)))
       app.stderr.on('data', data => console.log(String(data)))

@@ -2,7 +2,6 @@
 // Forge Configuration
 const path = require('path');
 const rootDir = process.cwd();
-console.log(__dirname)
 
 module.exports = {
   // Packager Config
@@ -10,7 +9,7 @@ module.exports = {
     // Create asar archive for main, renderer process files
     asar: true,
     extraResource: [
-      path.join(rootDir, 'resources/fyrlykt-core.exe'),
+      path.join(rootDir, `resources/fyrlykt-core${process.platform === 'win32' ? '.exe' : ''}`),
       path.join(rootDir, 'resources/loupedeck.config.json'), // Temp
       path.join(rootDir, 'resources/resolve.config.json') // Temp
     ],

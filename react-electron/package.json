@@ -10,7 +10,8 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts .",
-    "go-make-win": "cd ../go && go build -o ../react-electron/src/resources/fyrlykt-core.exe -ldflags '-extldflags=-static' . "
+    "go-make-win": "cd ../go && go build -o ../react-electron/resources/fyrlykt-core.exe -ldflags '-extldflags=-static' . ",
+    "go-make-mac": "cd ../go && go build -o ../react-electron/resources/fyrlykt-core . "
   },
   "keywords": [
     "fyrlykt",
