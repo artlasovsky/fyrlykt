@@ -9,7 +9,11 @@ module.exports = {
   packagerConfig: {
     // Create asar archive for main, renderer process files
     asar: true,
-    extraResource: [path.join(rootDir, 'icons/icon.ico')],
+    extraResource: [
+      path.join(rootDir, 'resources/fyrlykt-core.exe'),
+      path.join(rootDir, 'resources/loupedeck.config.json'), // Temp
+      path.join(rootDir, 'resources/resolve.config.json') // Temp
+    ],
     icon: path.join(rootDir, 'icons/icon.ico')
   },
   // Forge Makers

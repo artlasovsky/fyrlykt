@@ -1,28 +1,38 @@
 console.log('preload.js says 🎉hoooraay!')
-import { contextBridge } from 'electron'
+import { contextBridge, app } from 'electron'
 import fs from 'fs'
 import { spawn } from 'child_process'
 import { join } from 'path'
 
 const isDev = process.env.NODE_ENV === 'development'
 
+const initialConfigFiles = () => {
+  const loupedeckConfig = {} 
+  const resolveConfig = {} // Custom Commands + Parsed from Resolve Shortcuts list
+  const userData = app.getPath('userData')
+  // create config files from defaults if it not yet exists
+}
+
+let corePID: number
+
 const api = {
   test: () => console.log('test from preload'),
   fs,
   spawn,
   join,
-  rootDir: isDev ? join(process.cwd(), 'src') : process.cwd(),
   core: {
     run: () => {
-      const appPath = join(process.cwd(), 'src', 'resources/fyrlykt-core.exe')
-      const loupedeckConfig = join(process.cwd(), 'src', 'resources/loupdeck.config.json')
-      const resolveConfig = join(process.cwd(), 'src', 'resources/resolve.config.json')
+      const appPath = join(process.cwd(), 'resources/fyrlykt-core.exe')
+      const loupedeckConfig = join(process.cwd(), 'resources/loupdeck.config.json')
+      const resolveConfig = join(process.cwd(), 'resources/resolve.config.json')
       const app = spawn(appPath, [loupedeckConfig, resolveConfig])
       app.stdout.on('data', data => console.log(String(data)))
       app.stderr.on('data', data => console.log(String(data)))
       app.on('exit', () => console.log('core is closed'))
+      corePID = app.pid
       return app.pid
     },
+    test: () => console.log(corePID),
     kill: (pid: number) => process.kill(pid)
   }
 }

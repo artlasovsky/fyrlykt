@@ -5,19 +5,15 @@ import { hot } from 'react-hot-loader'
 import { ChildProcessWithoutNullStreams } from 'child_process'
 
 const mainContext: MainContext = (window as any).api
-const { core: { run, kill } } = mainContext
+const { core } = mainContext
 
 const App = () => {
   const [counter, setCounter] = useState(0)
 
-  const [core, setCore] = useState(null as null | number)
+  const [corePID, setCorePID] = useState(null as null | number)
 
-  const runCore = () => {
-    setCore(run())
-  }
-  const killCore = () => {
-    if (core) kill(core)
-  }
+  const runCore = () => setCorePID(core.run())
+  const killCore = () => corePID && core.kill(corePID)
   
   return <div className='container'>
   <h2 className='heading'>
