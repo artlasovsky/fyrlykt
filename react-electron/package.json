@@ -10,7 +10,7 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts .",
-    "go-make-win": "cd ../go && go build -o ../electron/assets/fyrlykt-go.exe -ldflags '-extldflags=-static' . "
+    "go-make-win": "cd ../go && go build -o ../react-electron/src/resources/fyrlykt-core.exe -ldflags '-extldflags=-static' . "
   },
   "keywords": [
     "fyrlykt",
