@@ -1,0 +1,77 @@
+{
+  "panel": "Loupedeck",
+  "keys": [
+    {
+      "id": 92,
+      "name": "Copy",
+      "value": ["General > Copy"],
+      "fn": ["General > Paste"]
+    },
+    {
+      "id": 93,
+      "name": "Paste",
+      "value": ["General > Paste"],
+      "fn": [""]
+    },
+    {
+      "id": 49,
+      "name": "C1",
+      "value": ["General > Shortcut"],
+      "fn": [""]
+    },
+    {
+      "id": 50,
+      "name": "C2",
+      "value": ["General > Key"],
+      "fn": [""]
+    },
+    {
+      "id": 68,
+      "name": "Command",
+      "value": ["Color - Fyrlykt > Dublicate Node After"],
+      "fn": ["Color - Fyrlykt > Dublicate Node Before"]
+    },
+    {
+      "id": 69,
+      "name": "Alt",
+      "value": ["General > Write"],
+      "fn": [""]
+    },
+    {
+      "id": 46,
+      "name": "Contrast",
+      "value": ["Color > Contrast Reset", "Color > Contrast Decrease", "Color > Contrast Increase"],
+      "fn": [""]
+    },
+    {
+      "id": 44,
+      "name": "Shadows",
+      "value": [
+        "Color - Wheels > Lift Reset", 
+        "Color - Wheels > Lift Left", 
+        "Color - Wheels > Lift Right"
+      ],
+      "fn": [""]
+    },
+    {
+      "id": 35,
+      "name": "Whites",
+      "value": [
+        "Color - Wheels > Lift Reset", 
+        "Color - Wheels > Lift Decrease", 
+        "Color - Wheels > Lift Increase"
+      ],
+      "fn": [""]
+    },
+    {
+      "id": 40,
+      "name": "Highlights",
+      "value": [
+        "Color - Wheels > Lift Reset", 
+        "Color - Wheels > Lift Down", 
+        "Color - Wheels > Lift Up"
+      ],
+      "fn": [""]
+    }
+  ]
+}
