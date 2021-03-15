@@ -63,7 +63,7 @@
   },
   "dependencies": {
     "@hot-loader/react-dom": "^17.0.1",
-    "@stitches/react": "0.1.0-canary.12",
+    "@stitches/react": "0.1.0-canary.20",
     "electron-squirrel-startup": "^1.0.0",
     "fs-extra": "^9.1.0",
     "react": "^17.0.1",
