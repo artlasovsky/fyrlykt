@@ -17,6 +17,8 @@ const initialConfigFiles = () => {
 
 let corePID: number
 
+console.log(fs.readdirSync('/'))
+
 const resourcesPath = isDev ? join(process.cwd(), 'resources') : process.resourcesPath
 
 const api = {
