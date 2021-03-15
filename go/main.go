@@ -52,7 +52,7 @@ func main() {
 	err, configJSON := readJSON(loupedeckConfig)
 	// must(err)
 	file := parseConfigJSON(configJSON)
-	fmt.Println(file.Panel)
+	fmt.Println(file.Name)
 
 	if device >= 0 {
 		in := ins[device]
@@ -69,8 +69,8 @@ func main() {
 				reader.Each(func(_ *reader.Position, msg midi.Message) {
 					currentApp := robotgo.GetTitle()
 					fmt.Println(currentApp)
-					fmt.Println(appConfig.App)
-					if strings.Contains(currentApp, appConfig.App) {
+					fmt.Println(appConfig.Name)
+					if strings.Contains(currentApp, appConfig.Name) {
 						fmt.Println("Resolve is Active")
 					} else {
 						fmt.Println("Resolve is not active")

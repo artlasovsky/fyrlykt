@@ -12,9 +12,9 @@ type Key struct {
 	Value []string
 	Fn    []string
 }
-type File struct {
-	Panel string
-	Keys  []Key
+type Panel struct {
+	Name string
+	Keys []Key
 }
 
 type Shortcut struct {
@@ -24,7 +24,7 @@ type Shortcut struct {
 }
 
 type AppConfig struct {
-	App       string
+	Name      string
 	Shortcuts []Shortcut
 }
 
@@ -48,8 +48,8 @@ func readJSON(path string) (error, []byte) {
 	return err, configJSON
 }
 
-func parseConfigJSON(jsonFile []byte) File {
-	var file File
+func parseConfigJSON(jsonFile []byte) Panel {
+	var file Panel
 	json.Unmarshal([]byte(jsonFile), &file)
 	return file
 }
