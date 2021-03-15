@@ -1,36 +1,50 @@
-console.log('preload.js says 🎉hoooraay!')
-import { contextBridge, app } from 'electron'
-import fs from 'fs'
+console.log('-- preload.js loaded')
+import { contextBridge, ipcRenderer } from 'electron'
 import { spawn } from 'child_process'
 import { join } from 'path'
+import { copyFileSync, existsSync } from 'fs'
+import { readFileSync } from 'fs'
 
 const isDev = process.env.NODE_ENV === 'development'
 
-const initialConfigFiles = () => {
-  const loupedeckConfig = {} 
-  const resolveConfig = {} // Custom Commands + Parsed from Resolve Shortcuts list
-  const userData = app.getPath('userData')
-
-  // Shortcuts depends on system
-  // create config files from defaults if it not yet exists
+const getPath = async (value: string) => {
+  return await ipcRenderer.invoke('getPath', value)
 }
+
+const resourcesPath = isDev ? join(process.cwd(), 'resources') : process.resourcesPath
+const defaultPanelConfig = join(resourcesPath, 'loupedeck.config.json')
+const defaultAppConfig = join(resourcesPath, 'resolve.config.json')
+
+let userPanelConfig = ''
+let userAppConfig = ''
+
+const configInit = async () => {
+  console.log('config init')
+  const userData = await getPath('userData')
+  // console.log(userData)
+  userPanelConfig = join(userData, 'loupedeck.config.json')
+  userAppConfig = join(userData, 'resolve.config.json')
+  if (!existsSync(userPanelConfig) || isDev) {
+    console.log('-- copy default panel config')
+    copyFileSync(defaultPanelConfig, userPanelConfig)
+  } 
+  if (!existsSync(userAppConfig) || isDev) {
+    console.log('-- copy default app config')
+    copyFileSync(defaultAppConfig, userAppConfig)
+  }
+}
+
+configInit()
+
 
 let corePID: number
 
-console.log(fs.readdirSync('/'))
-
-const resourcesPath = isDev ? join(process.cwd(), 'resources') : process.resourcesPath
-
 const api = {
-  test: () => console.log('test from preload'),
-  fs,
-  spawn,
-  join,
   core: {
     run: () => {
       const appPath = join(resourcesPath ,`/fyrlykt-core${process.platform === 'win32' ? '.exe' : ''}`)
-      const loupedeckConfig = join(resourcesPath, 'loupedeck.config.json')
-      const resolveConfig = join(resourcesPath, 'resolve.config.json')
+      const loupedeckConfig = userPanelConfig
+      const resolveConfig = userAppConfig
       const app = spawn(appPath, [loupedeckConfig, resolveConfig])
       app.stdout.on('data', data => console.log(String(data)))
       app.stderr.on('data', data => console.log(String(data)))
@@ -38,8 +52,11 @@ const api = {
       corePID = app.pid
       return app.pid
     },
-    test: () => console.log(corePID),
     kill: (pid: number) => process.kill(pid)
+  },
+  config: {
+    panel: () => JSON.parse(readFileSync(userPanelConfig, 'utf-8')) as PanelConfig,
+    app: () => JSON.parse(readFileSync(userAppConfig, 'utf-8')) as AppConfig
   }
 }
 

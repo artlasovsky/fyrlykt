@@ -1,7 +1,6 @@
 {
-  "app": "DaVinci Resolve",
-  "appDisplayName": "DaVinci Resolve",
-  "description": "Default Resolve Shortcuts",
+  "name": "DaVinci Resolve",
+  "displayName": "DaVinci Resolve",
   "shortcuts": [
     { "category": "Color", "name": "Contrast Reset", "value": "{bitmap_contrast:20:10}~{doubleclick}"},
     { "category": "Color", "name": "Contrast Decrease", "value": "{bitmap_contrast:20:10}~{drag_-1:-1:-15:0:left}"},

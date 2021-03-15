@@ -1,33 +1,10 @@
-import { coreState } from '@src/state'
+import { configState, coreState } from '@src/state'
 import { styled } from '@src/stitches.config'
 import logo from '@static/logo.png'
 import React, { useState } from 'react'
 import { hot } from 'react-hot-loader'
 import { useProxy } from 'valtio'
-
-// //@ts-ignore
-// const { core, fs }: MainContext = window.api
-
-const ButtonGroup = styled('div', {
-  display: 'flex',
-  variants: {
-    direction: {
-      horizontal: {
-        '> button': {
-          '&:not(:first-child)': {
-            marginLeft: '1em'
-          }
-        }
-      },
-      vertical: {
-
-      }
-    }
-  },
-  defaultVariants: {
-    direction: 'horizontal'
-  }
-})
+import { Button, ButtonGroup } from './Elements'
 
 const AppContainer = styled('div', {
   height: '100%',
@@ -39,29 +16,18 @@ const AppContainer = styled('div', {
   color: '$text'
 })
 
-const Button = styled('button', {
-  backgroundColor: '$buttonBg',
-  color: '$text',
-  border: 'none',
-  padding: '$normal',
-  borderRadius: '$normal',
-  fontSize: '$base',
-  outline: 'none',
-  minWidth: '10rem',
-  '&:hover, &:active': {
-    filter: 'brightness(120%)'
-  }
-})
-
 const App = () => {
   const core = useProxy(coreState)
   const [counter, setCounter] = useState(0)
+
+  const { panel, app } = useProxy(configState)
 
   return <AppContainer>
     <h2 className='heading'>
       <img src={logo} width='32' title='Codesbiome' /> &nbsp; Electron React
       Webpack Typescript
     </h2>
+    <p>{panel().name} - {app().displayName}</p>
     <ButtonGroup>
       <Button
         onClick={(): void =>

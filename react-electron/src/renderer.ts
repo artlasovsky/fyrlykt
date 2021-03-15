@@ -28,4 +28,4 @@
 
 import './app';
 
-console.log('renderer.js is so happy to say you 👋 hello....');
+console.log('-- renderer.js loaded');
