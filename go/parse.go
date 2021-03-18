@@ -43,14 +43,18 @@ func parseKey(keyId int, keyValue int, keys []Key, appConfig AppConfig, fnKey bo
 
 func parseShortcut(shortcut string, appConfig AppConfig) {
 	fmt.Println(shortcut)
-	split := strings.Split(shortcut, " > ")
-	category := split[0]
-	name := split[1]
-	found, value := searchShortcut(category, name, appConfig.Shortcuts)
-	if found {
-		runShortcut(value)
+	if strings.Contains(shortcut, " > ") {
+		split := strings.Split(shortcut, " > ")
+		category := split[0]
+		name := split[1]
+		found, value := searchShortcut(category, name, appConfig.Shortcuts)
+		if found {
+			runShortcut(value)
+		} else {
+			fmt.Println("Shortcut - Not Found")
+		}
 	} else {
-		fmt.Println("Shortcut - Not Found")
+		fmt.Println(("Empty Shortcut"))
 	}
 }
 
