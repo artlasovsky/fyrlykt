@@ -7,14 +7,14 @@ declare module '*.jpeg'
 
 interface PanelConfig {
   name: string,
-  keys: [Key]
+  keys: PanelKey[]
 }
 
-interface Key {
+interface PanelKey {
   id: number,
   name: string,
-  value: [string],
-  fn: [string]
+  value: string[],
+  fn: string[]
 }
 
 interface Shortcut {
@@ -26,5 +26,5 @@ interface Shortcut {
 interface AppConfig {
   name: string,
   displayName: string,
-  shortcuts: [Shortcut]
+  shortcuts: Shortcut[]
 }

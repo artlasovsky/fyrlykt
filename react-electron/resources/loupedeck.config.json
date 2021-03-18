@@ -2,76 +2,466 @@
   "name": "Loupedeck",
   "keys": [
     {
-      "id": 92,
-      "name": "Copy",
-      "value": ["General > Copy"],
-      "fn": ["General > Paste"]
-    },
-    {
-      "id": 93,
-      "name": "Paste",
-      "value": ["General > Paste"],
+      "id": 95,
+      "name": "Undo",
+      "value": [""],
       "fn": [""]
     },
     {
-      "id": 49,
-      "name": "C1",
-      "value": ["General > Shortcut"],
+      "id": 96,
+      "name": "Redo",
+      "value": [""],
       "fn": [""]
     },
     {
-      "id": 50,
-      "name": "C2",
-      "value": ["General > Key"],
+      "id": 114,
+      "name": "L1",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 115,
+      "name": "L2",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 116,
+      "name": "L3",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 65,
+      "name": "--/Col",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 66,
+      "name": "Shift",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 67,
+      "name": "Ctrl",
+      "value": [""],
       "fn": [""]
     },
     {
       "id": 68,
       "name": "Command",
-      "value": ["Color - Fyrlykt > Dublicate Node After"],
-      "fn": ["Color - Fyrlykt > Dublicate Node Before"]
+      "value": [""],
+      "fn": [""]
     },
     {
       "id": 69,
       "name": "Alt",
-      "value": ["General > Write"],
+      "value": [""],
       "fn": [""]
+    },
+    {
+      "id": 70,
+      "name": "Tab",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 92,
+      "name": "Copy",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 93,
+      "name": "Paste",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 49,
+      "name": "C1",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 50,
+      "name": "C2",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 51,
+      "name": "C3",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 52,
+      "name": "C4",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 53,
+      "name": "C5",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 54,
+      "name": "C6",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 102,
+      "name": "Before After",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 97,
+      "name": "Screen Mode",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 88,
+      "name": "Export",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 76,
+      "name": "Up",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 77,
+      "name": "Down",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 78,
+      "name": "Left",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 79,
+      "name": "Right",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 117,
+      "name": "Custom Mode",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 101,
+      "name": "Clr / BW",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 98,
+      "name": "Hue",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 99,
+      "name": "Sat",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 100,
+      "name": "Lum",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 80,
+      "name": "P1",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 81,
+      "name": "P2",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 82,
+      "name": "P3",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 83,
+      "name": "P4",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 84,
+      "name": "P5",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 85,
+      "name": "P6",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 86,
+      "name": "P7",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 87,
+      "name": "P8",
+      "value": [""],
+      "fn": [""]
+    },
+    {
+      "id": 48,
+      "name": "Control Dial",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 41,
+      "name": "D1",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 42,
+      "name": "D2",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
     },
     {
       "id": 46,
       "name": "Contrast",
-      "value": ["Color > Contrast Reset", "Color > Contrast Decrease", "Color > Contrast Increase"],
-      "fn": [""]
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
     },
     {
-      "id": 44,
-      "name": "Shadows",
-      "value": [
-        "Color - Wheels > Lift Reset", 
-        "Color - Wheels > Lift Left", 
-        "Color - Wheels > Lift Right"
-      ],
-      "fn": [""]
+      "id": 45,
+      "name": "Clarity",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 33,
+      "name": "Exposure",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 34,
+      "name": "Blacks",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
     },
     {
       "id": 35,
       "name": "Whites",
-      "value": [
-        "Color - Wheels > Lift Reset", 
-        "Color - Wheels > Lift Decrease", 
-        "Color - Wheels > Lift Increase"
-      ],
-      "fn": [""]
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 44,
+      "name": "Shadows",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
     },
     {
       "id": 40,
       "name": "Highlights",
-      "value": [
-        "Color - Wheels > Lift Reset", 
-        "Color - Wheels > Lift Down", 
-        "Color - Wheels > Lift Up"
-      ],
-      "fn": [""]
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 37,
+      "name": "Vibrance",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 36,
+      "name": "Saturation",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 38,
+      "name": "Temperature",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 39,
+      "name": "Tint",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 1,
+      "name": "Hue P1",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 2,
+      "name": "Hue P2",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 3,
+      "name": "Hue P3",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 4,
+      "name": "Hue P4",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 5,
+      "name": "Hue P5",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 6,
+      "name": "Hue P6",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 7,
+      "name": "Hue P7",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 8,
+      "name": "Hue P8",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 9,
+      "name": "Sat P1",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 10,
+      "name": "Sat P2",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 11,
+      "name": "Sat P3",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 12,
+      "name": "Sat P4",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 13,
+      "name": "Sat P5",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 14,
+      "name": "Sat P6",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 15,
+      "name": "Sat P7",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 16,
+      "name": "Sat P8",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 17,
+      "name": "Lum P1",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 18,
+      "name": "Lum P2",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 19,
+      "name": "Lum P3",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 20,
+      "name": "Lum P4",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 21,
+      "name": "Lum P5",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 22,
+      "name": "Lum P6",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 23,
+      "name": "Lum P7",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
+    },
+    {
+      "id": 24,
+      "name": "Lum P8",
+      "value": ["", "", ""],
+      "fn": ["", "", ""]
     }
   ]
 }

@@ -1,6 +1,6 @@
 import { styled } from '@src/stitches.config'
 
-export const Button = styled('button', {
+export const _Button = styled('button', {
   backgroundColor: '$buttonBg',
   color: '$text',
   border: 'none',
@@ -14,7 +14,7 @@ export const Button = styled('button', {
   }
 })
 
-export const ButtonGroup = styled('div', {
+export const _ButtonGroup = styled('div', {
   display: 'flex',
   variants: {
     direction: {
@@ -32,5 +32,24 @@ export const ButtonGroup = styled('div', {
   },
   defaultVariants: {
     direction: 'horizontal'
+  }
+})
+
+export const _Divider = styled('div', {
+  variants: {
+    orientation: {
+      horizontal: {
+        width: '100%',
+        height: '1px',
+        backgroundColor: 'gray',
+        my: '$normal'
+      },
+      vertical: {
+        width: '1px',
+        height: '100%',
+        backgroundColor: 'gray',
+        mx: '$normal'
+      }
+    }
   }
 })

@@ -2,22 +2,13 @@
   "name": "DaVinci Resolve",
   "displayName": "DaVinci Resolve",
   "shortcuts": [
-    { "category": "Color", "name": "Contrast Reset", "value": "{bitmap_contrast:20:10}~{doubleclick}"},
-    { "category": "Color", "name": "Contrast Decrease", "value": "{bitmap_contrast:20:10}~{drag_-1:-1:-15:0:left}"},
-    { "category": "Color", "name": "Contrast Increase", "value": "{bitmap_contrast:20:10}~{drag_-1:-1:15:0:left}"},
-    { "category": "General", "name": "Shortcut", "value": "{a++shift}"},
     { "category": "General", "name": "Copy", "value": "{c++ctrl}"},
     { "category": "General", "name": "Paste", "value": "{v++ctrl}"},
+    { "category": "General", "name": "Left", "value": "{left}"},
+    { "category": "General", "name": "Right", "value": "{right}"},
+    { "category": "General", "name": "Up", "value": "{up}"},
+    { "category": "General", "name": "Down", "value": "{down}"},
     { "category": "Color - Fyrlykt", "name": "Dublicate Node After", "value": "{c++ctrl}~{s++alt}~{v++ctrl}"},
-    { "category": "Color - Fyrlykt", "name": "Dublicate Node Before", "value": "{c++ctrl}~{s++shift}~{v++ctrl}"},
-    { "category": "General", "name": "Key", "value": "[f]"},
-    { "category": "General", "name": "Write", "value": "write[test Text]"},
-    { "category": "Color - Wheels", "name": "Lift Reset", "value": "{bitmap_lift:15:80}~{doubleclick}"},
-    { "category": "Color - Wheels", "name": "Lift Right", "value": "{bitmap_lift:15:80}~{drag_-1:-1:10:0:left}"},
-    { "category": "Color - Wheels", "name": "Lift Left", "value": "{bitmap_lift:15:80}~{drag_-1:-1:-10:0:left}"},
-    { "category": "Color - Wheels", "name": "Lift Up", "value": "{bitmap_lift:15:80}~{drag_-1:-1:0:-10:left}"},
-    { "category": "Color - Wheels", "name": "Lift Down", "value": "{bitmap_lift:15:80}~{drag_-1:-1:0:10:left}"},
-    { "category": "Color - Wheels", "name": "Lift Increase", "value": "{bitmap_lift:15:160}~{drag_-1:-1:10:0:left}"},
-    { "category": "Color - Wheels", "name": "Lift Decrease", "value": "{bitmap_lift:15:160}~{drag_-1:-1:-10:0:left}"}
+    { "category": "Color - Fyrlykt", "name": "Dublicate Node Before", "value": "{c++ctrl}~{s++shift}~{v++ctrl}"}
   ]
 }
