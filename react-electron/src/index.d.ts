@@ -25,6 +25,7 @@ interface Shortcut {
 
 interface AppConfig {
   name: string,
+  byUser?: boolean,
   displayName: string,
   shortcuts: Shortcut[]
 }

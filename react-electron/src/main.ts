@@ -1,11 +1,24 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, Tray, Menu, ipcMain, dialog } from 'electron'
+import { join } from 'path'
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
+const isDev = process.env.NODE_ENV === 'development'
+
 ipcMain.handle('getPath', async (event, value) => {
   const result = await app.getPath(value)
   return result
+})
+
+ipcMain.handle('dialog', async (event, value) => {
+  switch (value.method) {
+    case 'openFile': 
+      const result = await dialog.showOpenDialog(value.params)
+      return result
+    default:
+      return null
+  } 
 })
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -13,6 +26,8 @@ if (require('electron-squirrel-startup')) {
   // eslint-disable-line global-require
   app.quit();
 }
+
+let tray = null
 
 const createWindow = (): void => {
   // Create the browser window.
@@ -33,6 +48,32 @@ const createWindow = (): void => {
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+
+  // TRAY ICON
+  // tray = new Tray(join(process.resourcesPath, 'icon.ico'))
+  // const contextMenu = Menu.buildFromTemplate([
+  //   {
+  //     label: 'Quit', click: () => {
+  //       app.quit()
+  //     }
+  //   }
+  // ])
+  // tray.on('click', () => {
+  //   mainWindow?.show()
+  // })
+  // tray.setToolTip('React App')
+  // tray.setContextMenu(contextMenu)
+  // mainWindow.hide()
+  // if (!isDev) {
+  //   mainWindow.removeMenu()
+  // }
+  // mainWindow.on('minimize', (e:any) => {
+  //   e.preventDefault()
+  //   mainWindow?.hide()
+  // })
+
+  
+  !isDev && mainWindow.removeMenu()
 
   // Show window when its ready to
   mainWindow.on('ready-to-show', () => mainWindow.show());

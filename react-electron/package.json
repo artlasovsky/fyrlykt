@@ -68,11 +68,11 @@
     "@stitches/react": "0.1.0-canary.20",
     "electron-squirrel-startup": "^1.0.0",
     "fs-extra": "^9.1.0",
+    "jotai": "^0.15.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-select": "^4.2.1",
     "react-use-scroll-position": "^2.0.0",
-    "react-window": "^1.8.6",
-    "valtio": "^0.8.2"
+    "react-window": "^1.8.6"
   }
 }

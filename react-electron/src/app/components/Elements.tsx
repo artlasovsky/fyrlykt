@@ -1,5 +1,9 @@
 import { styled } from '@src/stitches.config'
 
+export const _Text = styled('p', {
+
+})
+
 export const _Button = styled('button', {
   backgroundColor: '$buttonBg',
   color: '$text',

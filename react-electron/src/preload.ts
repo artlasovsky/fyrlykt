@@ -14,12 +14,22 @@ const getPath = async (value: string) => {
   return await ipcRenderer.invoke('getPath', value)
 }
 
+const openFile = async (filters: { name: string, extensions: string[] }[]) => {
+  return await ipcRenderer.invoke('dialog', { 
+    method: 'openFile', 
+    params: { properties: ['openFile'], filters } 
+  })
+}
+
 const resourcesPath = isDev ? join(process.cwd(), 'resources') : process.resourcesPath
 const defaultPanelConfig = join(resourcesPath, 'loupedeck.config.json')
 const defaultAppConfig = join(resourcesPath, 'resolve.config.json')
 const resolveShortcuts = join(resourcesPath, 'DaVinci Resolve.txt')
 
-const updateAppConfigFromFile = (path: string):Shortcut[] => {
+const updateAppShortcutsFromFile = async (path: string, byUser: boolean = false) => {
+  const appConfig:AppConfig = JSON.parse(readFileSync(defaultAppConfig, 'utf-8'))
+  const userData = await getPath('userData')
+  const userAppConfig = join(userData, 'resolve.config.json')
   const file = readFileSync(path, 'utf-8')
   const lines = file.split('\n').filter(line => !(['#', '', '\r'].includes(line[0])))
     .map(line => {
@@ -56,8 +66,11 @@ const updateAppConfigFromFile = (path: string):Shortcut[] => {
         value
       }
   })
-  // console.log(shortcuts)
-  return shortcuts
+
+  appConfig.shortcuts.push(...shortcuts)
+  appConfig.byUser = byUser
+
+  writeFileSync(userAppConfig, JSON.stringify(appConfig, null, 2))
 }
 
 let userPanelConfig = ''
@@ -75,12 +88,7 @@ const configInit = async () => {
   } 
   if (!existsSync(userAppConfig) || forceDefaultAppConfig) {
     console.log('-- copy default app config')
-    const appConfig:AppConfig = JSON.parse(readFileSync(defaultAppConfig, 'utf-8'))
-    appConfig.shortcuts = [
-      ...appConfig.shortcuts, 
-      ...updateAppConfigFromFile(resolveShortcuts)
-    ]
-    writeFileSync(userAppConfig, JSON.stringify(appConfig, null, 2))
+    updateAppShortcutsFromFile(resolveShortcuts)
   }
 }
 
@@ -123,6 +131,20 @@ const api = {
     writePanelConfig: (config: PanelConfig) => {
       // console.log(config)
       writeFileSync(userPanelConfig, JSON.stringify(config, null, 2))
+    },
+    updateAppShortcuts: async () => {
+      const dialog = await openFile([{ name: 'Resolve Keyboard Config (*.txt)', extensions: ['txt'] }])
+      if (!dialog.canceled) {
+        const path = await dialog.filePaths[0]
+        await updateAppShortcutsFromFile(path, true)
+        // console.log(userAppConfig)
+        return true
+      }
+      return false
+    },
+    resetAppShortcuts: async () => {
+      await updateAppShortcutsFromFile(resolveShortcuts)
+      return true
     }
     // updateApp: (appConfig: AppConfig) => { 
     //   console.log(appConfig)
