@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 // Forge Configuration
-const path = require('path');
-const rootDir = process.cwd();
+const path = require('path')
+const rootDir = process.cwd()
+const version = process.env.npm_package_version
 
 module.exports = {
   // Packager Config
@@ -25,7 +26,8 @@ module.exports = {
       config: {
         name: 'electron-react-typescript-webpack-2021',
         iconUrl: path.join(rootDir, 'icons/icon.ico'),
-        setupIcon: path.join(rootDir, 'icons/icon.ico')
+        setupIcon: path.join(rootDir, 'icons/icon.ico'),
+        setupExe: `fyrlykt_${version}_win.exe`
       },
     },
     {
