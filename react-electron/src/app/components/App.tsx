@@ -14,7 +14,7 @@ const CheckVersion = ({ currentVersion }: { currentVersion: string }) => {
       setReleases(await response.json())
     }
   }
-  
+
   useEffect(() => {
     checkGitHub()
   }, [])
@@ -96,7 +96,7 @@ const TopBar = () => {
     <Menu>
       <MenuButton as={Button} size="sm">Config</MenuButton>
       <MenuList>
-        <MenuGroup title={["Resolve Config", appConfig.byUser ? '(Custom)' : null].join(' ')}>
+        <MenuGroup title={["Resolve Keyboard Config", appConfig.byUser ? '(Custom)' : null].join(' ')}>
           <MenuItem onClick={importUserShortcuts}>Import...</MenuItem>
           <MenuItem isDisabled={!appConfig.byUser} onClick={resetUserShortcuts}>Reset to Default</MenuItem>
         </MenuGroup>
@@ -104,7 +104,7 @@ const TopBar = () => {
         <MenuGroup title="Loupedeck Config">
           <MenuItem onClick={importPanelConfig}>Import...</MenuItem>
           <MenuItem onClick={exportPanelConfig}>Export...</MenuItem>
-          <MenuItem isDisabled>Reset to Default</MenuItem>
+          <MenuItem isDisabled>Reset to Default (Empty)</MenuItem>
         </MenuGroup>
       </MenuList>
     </Menu>
