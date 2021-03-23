@@ -1,16 +1,23 @@
 import { useToast } from '@chakra-ui/toast'
 import { MainContext } from '@src/preload'
 import { atom, useAtom } from 'jotai'
+import { useState } from 'react'
 // import { ipcRenderer } from 'electron'
 
 //@ts-ignore
-const { core: coreContext, config: configContext }: MainContext = window.api
+const { core: coreContext, config: configContext, app: appContext }: MainContext = window.api
 
 const init = {
   pid: atom(-1),
   app: atom(configContext.app()),
   panel: atom(configContext.panel()),
   editedPanel: atom(configContext.panel())
+}
+
+export const _app = () => {
+  return {
+    ...appContext
+  }
 }
 
 export const _core = () => {
@@ -21,7 +28,6 @@ export const _core = () => {
     nullPid: () => setPid(-1),
     run: async () => {
       await setPid(coreContext.run())
-      return coreContext.message()
     },
     close: () => {
       coreContext.kill(pid)
@@ -94,7 +100,15 @@ export const _config = () => {
           await configContext.writePanelConfig(newPanelConfig)
           refreshPanel()
         },
-        exportChanges: () => {},
+        exportPanelConfig: async () => {
+          const done = await configContext.exportPanelConfig()
+          console.log(done ? 'export finished' : 'export canceled')
+        },
+        importPanelConfig: async () => {
+          const done = await configContext.importPanelConfig()
+          refreshPanel()
+          console.log(done ? 'import finished' : 'import canceled')
+        },
         cancelChanges: async () => {
           const edit = clone(panel)
           edit.keys = []

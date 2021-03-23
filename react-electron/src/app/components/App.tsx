@@ -1,5 +1,4 @@
-import { clone, _config, _core } from '@src/state'
-import logo from '@static/logo.png'
+import { clone, _app, _config, _core } from '@src/state'
 import React, { useEffect, useState } from 'react'
 import { hot } from 'react-hot-loader'
 
@@ -7,9 +6,44 @@ import { Button, ButtonGroup, Container, Select, Divider, Menu, MenuItem, MenuDi
 import { VStack } from "@chakra-ui/react"
 import { range } from '@app/lib'
 
+const CheckVersion = ({ currentVersion }: { currentVersion: string }) => {
+  const [releases, setReleases] = useState([] as any)
+  const checkGitHub = async () => {
+    const response = await fetch('https://api.github.com/repos/artlasovsky/fyrlykt_beta/releases')
+    if (response.ok) {
+      setReleases(await response.json())
+    }
+  }
+  
+  useEffect(() => {
+    checkGitHub()
+  }, [])
+
+  let latestRelease = null as any 
+
+  if (releases.length) {
+    const release = releases[0]
+    latestRelease = {
+      version: release.tag_name,
+      link: {
+        windows: release.assets.find((asset:any) => asset.name.includes('win')).browser_download_url,
+        macos: release.assets.find((asset:any) => asset.name.includes('mac')).browser_download_url
+      }
+    }
+  }
+
+  const handleUpdateButton = () => {
+    _app().openExternal(latestRelease.link[_app().platform])
+  }
+
+  return latestRelease && (currentVersion < latestRelease.version) && <Button onClick={handleUpdateButton} colorScheme="orange" size="sm">
+    Update Available!
+  </Button>
+}
+
 
 const TopBar = () => {
-  const { hasChanges, saveChanges, cancelChanges } = _config().editor.panel
+  const { hasChanges, saveChanges, cancelChanges, importPanelConfig, exportPanelConfig } = _config().editor.panel
   const { importUserShortcuts, resetUserShortcuts } = _config().editor
   const appConfig = _config().app
   const { run, close, isRunning: coreIsRunning, nullPid } = _core()
@@ -17,8 +51,6 @@ const TopBar = () => {
   const toast = useToast()
   const [message, setMessage] = useState(null as null | UseToastOptions)
   useEffect(() => {
-    // console.log(message)
-    // toast
     if (message !== null) {
       toast(message)
       setTimeout(() => {
@@ -40,10 +72,19 @@ const TopBar = () => {
     }
   }
 
+  const [version, setVersion] = useState('')
+  useEffect(() => {
+    const init = async () => {
+        setVersion(await _app().getVersion())
+    }
+    init()
+  }, [])
+
+
   return <HStack p="4" shadow="lg" alignItems="center" height="16" spacing="4">
     <VStack align="flex-end" spacing="0.25">
       <Heading fontSize="lg">Fyrlykt</Heading>
-      <Text fontSize="xs" opacity="0.5">v. 0.2.0</Text>
+      <Text fontSize="xs" opacity="0.5">{version}</Text>
     </VStack>
     <Divider orientation="vertical" color="gray.300"/>
     <Spacer />
@@ -51,8 +92,8 @@ const TopBar = () => {
       <Button colorScheme='yellow' onClick={saveChanges}>Save Changes</Button>
       <Button onClick={cancelChanges}>Cancel Changes</Button>
     </ButtonGroup>}
+    <Button size="sm">Help</Button>
     <Menu>
-      <MenuButton as={Button} size="sm">Help</MenuButton>
       <MenuButton as={Button} size="sm">Config</MenuButton>
       <MenuList>
         <MenuGroup title={["Resolve Config", appConfig.byUser ? '(Custom)' : null].join(' ')}>
@@ -61,8 +102,8 @@ const TopBar = () => {
         </MenuGroup>
         <MenuDivider />
         <MenuGroup title="Loupedeck Config">
-          <MenuItem>Import...</MenuItem>
-          <MenuItem>Export...</MenuItem>
+          <MenuItem onClick={importPanelConfig}>Import...</MenuItem>
+          <MenuItem onClick={exportPanelConfig}>Export...</MenuItem>
           <MenuItem isDisabled>Reset to Default</MenuItem>
         </MenuGroup>
       </MenuList>
@@ -74,6 +115,7 @@ const TopBar = () => {
         <Button onClick={run}>Run</Button>
       }
     </ButtonGroup>
+    <CheckVersion currentVersion={version}/>
     {/* <Button colorScheme="orange" size="sm">Update Available!</Button> */}
   </HStack>
 }
@@ -245,7 +287,7 @@ const KeyAction = ({ name, value, panelKey, setValue }:KeyActionProps ) => {
           <ButtonGroup size="sm" width="full">
             <Button isDisabled={!isChanged} onClick={saveChanges} colorScheme="green" flex="3">Save</Button>
             <Button isDisabled={!isChanged} onClick={resetChanges} flex="1">Reset Changes</Button>
-            <Button isDisabled={newValue.length === 0}onClick={setEmpty} flex="1">Set Empty</Button>
+            <Button isDisabled={value.length === 0}onClick={setEmpty} flex="1">Set Empty</Button>
           </ButtonGroup>
         </VStack>
       </PopoverBody>

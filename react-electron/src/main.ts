@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Tray, Menu, ipcMain, dialog } from 'electron'
+import { app, BrowserWindow, Tray, Menu, ipcMain, dialog, shell } from 'electron'
 import { join } from 'path'
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
@@ -10,12 +10,24 @@ ipcMain.handle('getPath', async (event, value) => {
   const result = await app.getPath(value)
   return result
 })
+ipcMain.handle('getVersion', async () => {
+  const result = await app.getVersion()
+  return result
+})
+
+ipcMain.handle('openExternal', async (event, value) => {
+  shell.openExternal(value)
+})
 
 ipcMain.handle('dialog', async (event, value) => {
   switch (value.method) {
     case 'openFile': 
-      const result = await dialog.showOpenDialog(value.params)
-      return result
+      const openResult = await dialog.showOpenDialog(value.params)
+      return openResult
+    case 'saveFile':
+      const saveResult = await dialog.showSaveDialog(value.params)
+      // console.log(saveResult)
+      return saveResult
     default:
       return null
   } 

@@ -11,6 +11,14 @@ const forceDefaultPanelConfig = false
 
 const isDev = process.env.NODE_ENV === 'development'
 
+const getVersion = async () => {
+  return await ipcRenderer.invoke('getVersion', null)
+}
+
+const openExternal = async (link: string) => {
+  await ipcRenderer.invoke('openExternal', link)
+}
+
 const getPath = async (value: string) => {
   return await ipcRenderer.invoke('getPath', value)
 }
@@ -19,6 +27,12 @@ const openFile = async (filters: { name: string, extensions: string[] }[]) => {
   return await ipcRenderer.invoke('dialog', { 
     method: 'openFile', 
     params: { properties: ['openFile'], filters } 
+  })
+}
+const saveFile = async (options: { title?: string, buttonLabel?: string, defaultPath?: string, filters?: { name: string, extensions: string[] }[] } ) => {
+  return await ipcRenderer.invoke('dialog', {
+    method: 'saveFile',
+    params: options
   })
 }
 
@@ -98,13 +112,21 @@ configInit()
 
 let corePID: number
 
-let coreMessage = ''
 
+const sendCoreMessage = ({ title, status, description }: UseToastOptions) => {
+  const message: UseToastOptions = {
+    title,
+    status,
+    description,
+    // duration: 4800,
+    isClosable: true
+  }
+  window.postMessage({ id: 'core', message}, '*')
+}
 
 
 const api = {
   core: {
-    message: () => coreMessage,
     run: () => {
       const appPath = join(resourcesPath ,`/fyrlykt-core${process.platform === 'win32' ? '.exe' : ''}`)
       const loupedeckConfig = userPanelConfig
@@ -112,26 +134,35 @@ const api = {
       const app = spawn(appPath, [loupedeckConfig, resolveConfig])
       app.stdout.on('data', data => {
         const message = String(data)
-        // console.log(message)
+        console.log(message)
         // console.log(message.includes('Loupedeck'))
         if (message.includes('No connected Loupedeck found')) {
-          const message: UseToastOptions = {
-            title: 'Fyrlykt',
+          sendCoreMessage({
+            title: 'Fyrlykt Core',
             status: 'error',
-            description: 'No connected Loupedeck found',
-            // duration: 4800,
+            description: 'Loupedeck is not connected',
             isClosable: true
-          }
-          window.postMessage({ id: 'core', message}, '*')
+          })
           api.core.kill(app.pid)
+        }
+        if (message.includes('Run Reader')) {
+          sendCoreMessage({
+            title: 'Fyrlykt Core - Started!',
+            status: 'success',
+            description: 'You can use Resolve with Loupedeck now',
+            isClosable: true
+          })
         }
       })
       app.stderr.on('data', data => {
         const message = String(data)
         // console.log(String(data))
-        if (message.includes('Loupedeck')) {
-          coreMessage = String(data)
-        }
+        sendCoreMessage({
+          title: 'Core Error',
+          status: 'warning',
+          description: message,
+          isClosable: true
+        })
       })
       app.on('close', () => console.log('core is closed'))
       corePID = app.pid
@@ -173,11 +204,53 @@ const api = {
     resetAppShortcuts: async () => {
       await updateAppShortcutsFromFile(resolveShortcuts)
       return true
+    },
+    exportPanelConfig: async () => {
+      const dialog = await saveFile({ title: 'Save Fyrlykt Panel Config', defaultPath: 'loupedeck.config.json', filters: [
+        { name: 'Fyrlykt Loupedeck Config File', extensions: ['config.json'] }
+      ]})
+      // console.log(dialog)
+      if (!dialog.canceled) {
+        const path = dialog.filePath
+        writeFileSync(path, JSON.stringify(api.config.panel(), null, 2))
+        const message: UseToastOptions = {
+          title: 'Panel Config Export - Done!',
+          status: 'success',
+          // description: 'No connected Loupedeck found',
+          // duration: 4800,
+          isClosable: true
+        }
+        window.postMessage({ id: 'core', message}, '*')
+        return true
+      }
+      return false
+    },
+    importPanelConfig: async () => {
+      const dialog = await openFile([{ name: 'Fyrlykt Panel Config Config (*.json)', extensions: ['config.json'] }])
+      if (!dialog.canceled) {
+        const path = dialog.filePaths[0]
+        copyFileSync(path, userPanelConfig)
+        const message: UseToastOptions = {
+          title: 'Panel Config Import - Done!',
+          status: 'success',
+          // description: 'No connected Loupedeck found',
+          // duration: 4800,
+          isClosable: true
+        }
+        window.postMessage({ id: 'core', message}, '*')
+        return true
+      }
+      return false
     }
     // updateApp: (appConfig: AppConfig) => { 
     //   console.log(appConfig)
     //   // update config
     // }
+  },
+  app: {
+    getVersion,
+    platform: process.platform === 'win32' ? 'windows' : 'macos',
+    openExternal
   }
 }
 
