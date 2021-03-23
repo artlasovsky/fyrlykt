@@ -1,13 +1,17 @@
 # Fyrlykt
 An app to connect Loupedeck+ & DaVinci Resolve 17
 
-[Donate][donate] | [[Download]][download]
+[Donate][donate] | [Download][download]
 
 ###Features:
 - Work both on macOS and Windows
 - Assing any DaVinci Resolve shortcut to any key or knob on Loupedeck panel
 - Import custom shortcuts from DaVinci Resolve
 - Import / Export custom Loupedeck configurations
+
+###Notes:
+- Initially installing with empty keys/knobs config (it will be changed later)
+- App is not filtering shortcuts, so it will go to any active app
 
 ####Features In Progress:
 - Customizable chaining of shortcuts
