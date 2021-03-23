@@ -1,12 +1,12 @@
 console.log('-- preload.js loaded')
 import { contextBridge, ipcRenderer } from 'electron'
-import { ChildProcessWithoutNullStreams, spawn } from 'child_process'
+import { spawn } from 'child_process'
 import { join } from 'path'
 import { copyFileSync, existsSync } from 'fs'
 import { readFileSync, writeFileSync } from 'fs'
 import { UseToastOptions } from '@chakra-ui/react'
 
-const forceDefaultAppConfig = true
+const forceDefaultAppConfig = false
 const forceDefaultPanelConfig = false
 
 const isDev = process.env.NODE_ENV === 'development'
@@ -64,9 +64,11 @@ const updateAppShortcutsFromFile = async (path: string, byUser: boolean = false)
     })
     .filter(shortcut => shortcut != undefined) as Shortcut[]
   const shortcuts: Shortcut[] = lines.map(line => {
-      const shortcut = line.value.replace("Num+", "Num").split('+')
+    const shortcut = line.value.replace("Num+", "Num").split('+')
       const modifiers = shortcut.slice(0, -1)
-        .map(modifier => modifier.toLowerCase())
+        .map(modifier => {
+          modifier.toLowerCase()
+        })
       const [ key ] = shortcut.slice(-1).map(key => key.toLowerCase())
       let value
       if (modifiers.length) {
@@ -81,7 +83,10 @@ const updateAppShortcutsFromFile = async (path: string, byUser: boolean = false)
         value
       }
   })
-
+  // Mac OS replace Ctrl to Cmd
+  if (process.platform === 'darwin') {
+    appConfig.shortcuts = appConfig.shortcuts.map(s => ({...s, value: s.value.replace('ctrl', 'cmd')}))
+  }
   appConfig.shortcuts.push(...shortcuts)
   appConfig.byUser = byUser
 
@@ -103,6 +108,7 @@ const configInit = async () => {
   } 
   if (!existsSync(userAppConfig) || forceDefaultAppConfig) {
     console.log('-- copy default app config')
+    console.log(userAppConfig)
     updateAppShortcutsFromFile(resolveShortcuts)
   }
 }

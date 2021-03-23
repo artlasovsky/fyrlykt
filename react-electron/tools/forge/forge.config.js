@@ -13,6 +13,7 @@ module.exports = {
       path.join(rootDir, `resources/fyrlykt-core${process.platform === 'win32' ? '.exe' : ''}`),
       path.join(rootDir, 'resources/loupedeck.config.json'),
       path.join(rootDir, 'resources/resolve.config.json'),
+      path.join(rootDir, 'resources/DaVinci Resolve.txt'),
       path.join(rootDir, 'icons/icon.ico')
     ],
     icon: path.join(rootDir, 'icons/icon.ico')
