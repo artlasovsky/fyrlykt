@@ -91,6 +91,29 @@ const createWindow = (): void => {
   mainWindow.on('ready-to-show', () => mainWindow.show());
 };
 
+if (process.platform === 'darwin' && process.env.NODE_ENV === 'production') {
+  const template = [
+    {
+      label: app.getName(),
+      submenu: [{ role: 'about' }, { type: 'separator' }, { role: 'hide' }, { role: 'hideothers' }, { role: 'unhide' }, { type: 'separator' }, { role: 'quit' }]
+    },
+    {
+      label: 'Edit',
+      submenu: [{ role: 'undo' }, { role: 'redo' }, { type: 'separator' }, { role: 'cut' }, { role: 'copy' }, { role: 'paste' }, { role: 'selectall' }]
+    },
+    {
+      label: 'View',
+      submenu: [{ role: 'togglefullscreen' }]
+    },
+    {
+      role: 'window',
+      submenu: [{ role: 'minimize' }, { role: 'close' }]
+    }
+  ];
+
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template as any));
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
