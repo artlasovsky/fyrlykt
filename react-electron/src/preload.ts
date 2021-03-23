@@ -1,9 +1,10 @@
 console.log('-- preload.js loaded')
 import { contextBridge, ipcRenderer } from 'electron'
-import { spawn } from 'child_process'
+import { ChildProcessWithoutNullStreams, spawn } from 'child_process'
 import { join } from 'path'
 import { copyFileSync, existsSync } from 'fs'
 import { readFileSync, writeFileSync } from 'fs'
+import { UseToastOptions } from '@chakra-ui/react'
 
 const forceDefaultAppConfig = true
 const forceDefaultPanelConfig = false
@@ -97,15 +98,41 @@ configInit()
 
 let corePID: number
 
+let coreMessage = ''
+
+
+
 const api = {
   core: {
+    message: () => coreMessage,
     run: () => {
       const appPath = join(resourcesPath ,`/fyrlykt-core${process.platform === 'win32' ? '.exe' : ''}`)
       const loupedeckConfig = userPanelConfig
       const resolveConfig = userAppConfig
       const app = spawn(appPath, [loupedeckConfig, resolveConfig])
-      app.stdout.on('data', data => console.log(String(data)))
-      app.stderr.on('data', data => console.log(String(data)))
+      app.stdout.on('data', data => {
+        const message = String(data)
+        // console.log(message)
+        // console.log(message.includes('Loupedeck'))
+        if (message.includes('No connected Loupedeck found')) {
+          const message: UseToastOptions = {
+            title: 'Fyrlykt',
+            status: 'error',
+            description: 'No connected Loupedeck found',
+            // duration: 4800,
+            isClosable: true
+          }
+          window.postMessage({ id: 'core', message}, '*')
+          api.core.kill(app.pid)
+        }
+      })
+      app.stderr.on('data', data => {
+        const message = String(data)
+        // console.log(String(data))
+        if (message.includes('Loupedeck')) {
+          coreMessage = String(data)
+        }
+      })
       app.on('close', () => console.log('core is closed'))
       corePID = app.pid
       return app.pid
@@ -119,9 +146,10 @@ const api = {
           return false;
         }
       }
-      console.log(pidIsRunning(pid))
+      // console.log(pidIsRunning(pid))
       if (pidIsRunning(pid) && pid !== -1) {
         process.kill(pid)
+        window.postMessage({ id: 'pid', message: -1 }, '*')
       }
     }
   },

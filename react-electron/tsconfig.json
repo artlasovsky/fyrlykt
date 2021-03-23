@@ -4,6 +4,7 @@
     "allowJs": true,
     "target": "ES6",
     "module": "ESNext",
+    "lib": ["DOM","ES2019"],
     "skipLibCheck": true,
     "esModuleInterop": true,
     "noImplicitAny": true,

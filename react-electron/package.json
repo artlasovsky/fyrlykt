@@ -64,9 +64,13 @@
     "webpack": "^5.25.1"
   },
   "dependencies": {
+    "@chakra-ui/react": "^1.4.1",
+    "@emotion/react": "11",
+    "@emotion/styled": "11",
     "@hot-loader/react-dom": "^17.0.1",
     "@stitches/react": "0.1.0-canary.20",
     "electron-squirrel-startup": "^1.0.0",
+    "framer-motion": "^4.0.0",
     "fs-extra": "^9.1.0",
     "jotai": "^0.15.3",
     "react": "^17.0.1",

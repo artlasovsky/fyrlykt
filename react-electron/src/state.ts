@@ -1,5 +1,7 @@
+import { useToast } from '@chakra-ui/toast'
 import { MainContext } from '@src/preload'
 import { atom, useAtom } from 'jotai'
+// import { ipcRenderer } from 'electron'
 
 //@ts-ignore
 const { core: coreContext, config: configContext }: MainContext = window.api
@@ -14,9 +16,12 @@ const init = {
 export const _core = () => {
   const [pid, setPid] = useAtom(init.pid)
   return {
+    isRunning: pid !== -1,
     pid,
-    run: () => {
-      setPid(coreContext.run())
+    nullPid: () => setPid(-1),
+    run: async () => {
+      await setPid(coreContext.run())
+      return coreContext.message()
     },
     close: () => {
       coreContext.kill(pid)
