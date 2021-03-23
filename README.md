@@ -3,23 +3,23 @@ An app to connect Loupedeck+ & DaVinci Resolve 17
 
 [Donate][donate] | [Download][download]
 
-###Features:
+### Features:
 - Work both on macOS and Windows
 - Assing any DaVinci Resolve shortcut to any key or knob on Loupedeck panel
 - Import custom shortcuts from DaVinci Resolve
 - Import / Export custom Loupedeck configurations
 
-###Notes:
+### Notes:
 - Initially installing with empty keys/knobs config (it will be changed later)
 - App is not filtering shortcuts, so it will go to any active app
 
-####Features In Progress:
+#### Features In Progress:
 - Customizable chaining of shortcuts
 - Predefined custom text inputs (useful for fast labeling)
 - Color Page support (Color Wheels, Color Warper, Curves, etc.)
 
 ---
-####How to build:
+#### How to build:
 Languages: TypeScript & Go
 - Clone project `git clone https://github.com/artlasovsky/fyrlykt_beta`
 - `cd react-electron`
