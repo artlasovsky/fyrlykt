@@ -9,7 +9,7 @@ import { range } from '@app/lib'
 const CheckVersion = ({ currentVersion }: { currentVersion: string }) => {
   const [releases, setReleases] = useState([] as any)
   const checkGitHub = async () => {
-    const response = await fetch('https://api.github.com/repos/artlasovsky/fyrlykt_beta/releases')
+    const response = await fetch('https://api.github.com/repos/artlasovsky/fyrlykt/releases')
     if (response.ok) {
       setReleases(await response.json())
     }
@@ -92,7 +92,7 @@ const TopBar = () => {
       <Button colorScheme='yellow' onClick={saveChanges}>Save Changes</Button>
       <Button onClick={cancelChanges}>Cancel Changes</Button>
     </ButtonGroup>}
-    <Button size="sm">Help</Button>
+    <Button isDisabled size="sm">Help</Button>
     <Menu>
       <MenuButton as={Button} size="sm">Config</MenuButton>
       <MenuList>
