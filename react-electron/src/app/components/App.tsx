@@ -21,10 +21,11 @@ const CheckVersion = ({ currentVersion }: { currentVersion: string }) => {
 
   let latestRelease = null as any 
 
+  // TODO: Create Better (failure-proof) Version Checker
   if (releases.length) {
     const release = releases[0]
     latestRelease = {
-      version: release.tag_name,
+      version: release.tag_name.replace('v', ''),
       link: {
         windows: release.assets.find((asset:any) => asset.name.includes('win')).browser_download_url,
         macos: release.assets.find((asset:any) => asset.name.includes('mac')).browser_download_url
