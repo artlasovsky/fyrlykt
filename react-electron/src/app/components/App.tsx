@@ -27,8 +27,8 @@ const CheckVersion = ({ currentVersion }: { currentVersion: string }) => {
     latestRelease = {
       version: release.tag_name.replace('v', ''),
       link: {
-        windows: release.assets.find((asset:any) => asset.name.includes('win')).browser_download_url,
-        macos: release.assets.find((asset:any) => asset.name.includes('mac')).browser_download_url
+        windows: release.assets.find((asset:any) => asset.name.includes('win'))?.browser_download_url,
+        macos: release.assets.find((asset:any) => asset.name.includes('mac'))?.browser_download_url
       }
     }
   }
@@ -37,7 +37,7 @@ const CheckVersion = ({ currentVersion }: { currentVersion: string }) => {
     _app().openExternal(latestRelease.link[_app().platform])
   }
 
-  return latestRelease && (currentVersion < latestRelease.version) && <Button onClick={handleUpdateButton} colorScheme="orange" size="sm">
+  return latestRelease && (currentVersion < latestRelease.version) && latestRelease.link[_app().platform] && <Button onClick={handleUpdateButton} colorScheme="orange" size="sm">
     Update Available!
   </Button>
 }
