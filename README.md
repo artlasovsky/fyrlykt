@@ -10,6 +10,7 @@ An app to connect Loupedeck+ & DaVinci Resolve 17
 - Import / Export custom Loupedeck configurations
 
 ### Notes:
+- I will continue work on project after May'21, so the next version / bug fixes and other improvements will be by the end of June.
 - Initially installing with empty keys/knobs config (it will be changed later)
 - App is not filtering shortcuts, so it will go to any active app
 
