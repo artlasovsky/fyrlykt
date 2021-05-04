@@ -54,6 +54,8 @@ gitlab.com/gomidi/midi v1.17.2/go.mod h1:3ohtNOhqoSakkuLG/Li1OI6I3J1c2LErnJF5o/V
 gitlab.com/gomidi/midi v1.21.0/go.mod h1:3ohtNOhqoSakkuLG/Li1OI6I3J1c2LErnJF5o/VBq1c=
 gitlab.com/gomidi/midi v1.23.0 h1:21DS9n/ZOwkc9Svfn3/FiASCuApQqLacOgATMNeQmaw=
 gitlab.com/gomidi/midi v1.23.0/go.mod h1:3ohtNOhqoSakkuLG/Li1OI6I3J1c2LErnJF5o/VBq1c=
+gitlab.com/gomidi/midi v1.23.4 h1:2j/yYVRqM3nYMQriLC0KRrew4syfQ6pX/MjYe4MegFU=
+gitlab.com/gomidi/midi v1.23.4/go.mod h1:3ohtNOhqoSakkuLG/Li1OI6I3J1c2LErnJF5o/VBq1c=
 gitlab.com/gomidi/rtmididrv v0.10.1 h1:BgqhFpBgythJqFbiR8QtL3CER1nh26YCUPFGVidS9gk=
 gitlab.com/gomidi/rtmididrv v0.10.1/go.mod h1:sBxBDsJKVhinLt+kk7fj6WfKRCmnFzFSkFY1chDNLbw=
 gitlab.com/gomidi/rtmididrv v0.11.0 h1:Bc/zr8agMU2KDcpj932Vy51K4YO5Cp6pPIY6Buf6Q6Y=
