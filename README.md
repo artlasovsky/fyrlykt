@@ -1,6 +1,12 @@
 # Fyrlykt
 An app to connect Loupedeck+ & DaVinci Resolve 17
 
+## Hi! Currently I do not have time for the further development of the project. 
+Thanks for everyone for the support and feedback! It was a great experience for me and leave the repo opened, so maybe someone will continue the development using that I have done.
+
+I've found myself not using the Loupedeck with Resolve as much as I expected (for my workflow the Tablet + Keyboard still a faster solition).
+
+---
 [Donate][donate] | [Download][download]
 
 ### Features:
@@ -10,7 +16,6 @@ An app to connect Loupedeck+ & DaVinci Resolve 17
 - Import / Export custom Loupedeck configurations
 
 ### Notes:
-- I will continue work on project after May'21, so the next version / bug fixes and other improvements will be by the end of June.
 - Initially installing with empty keys/knobs config (it will be changed later)
 - App is not filtering shortcuts, so it will go to any active app
 
