@@ -1,13 +1,13 @@
 # Fyrlykt
 An app to connect Loupedeck+ & DaVinci Resolve 17
 
-## Hi! Currently I do not have time for the further development of the project. 
+## Hey! The project is not developing any more. But feel free to use the code in your projects.
 Thanks for everyone for the support and feedback! It was a great experience for me and leave the repo opened, so maybe someone will continue the development using that I have done.
 
 I've found myself not using the Loupedeck with Resolve as much as I expected (for my workflow the Tablet + Keyboard still a faster solition).
 
 ---
-[Donate][donate] | [Download][download]
+[Download][download]
 
 ### Features:
 - Work both on macOS and Windows
@@ -35,5 +35,4 @@ Languages: TypeScript & Go
 - `yarn make` to **build**
 
 
-[donate]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KACYGFTZSTPBW "Support further app development"
 [download]: https://github.com/artlasovsky/fyrlykt_beta/releases "Download"
